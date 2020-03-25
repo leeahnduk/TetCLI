@@ -25,7 +25,7 @@ $ pip3 install -r requirements.txt
 ```
 
 ## Screenshots
-![Example screenshot](./tetcli.jpg)
+![Example screenshot](https://github.com/leeahnduk/TetCLI/blob/master/tetcli.jpg)
 
 ## UserGuide
 How to use this application:
