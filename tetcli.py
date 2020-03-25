@@ -340,7 +340,7 @@ def uploadServerPorts(rc):
     vrfs = GetVRFs(rc)
     print (Cyan + "\nHere are the names and VRF ID of all the root scopes in your cluster: ")
     GetRootScope(vrfs)
-    root_scope_name = input(CGREEN +"\nWhat is the root scope you want to upload filehash: ")
+    root_scope_name = input(CGREEN +"\nWhat is the root scope you want to upload server ports: ")
     scopes = GetApplicationScopes(rc)
     root_scope_id = GetAppScopeId(scopes,root_scope_name)
     file_path = "server_ports.txt"
@@ -348,7 +348,7 @@ def uploadServerPorts(rc):
     if resp.status_code == 200:
         print("\nUploaded sucessful!" + CEND)
     else:
-        print("Error occured during upload hash")
+        print("Error occured during upload server ports")
         print("Error code: "+str(resp.status_code))
         sys.exit(3)
 
@@ -2326,7 +2326,7 @@ def main():
     if command == "agents" or command =="agents -h" or command =="agents h" or command =="agents help" or command =="agents ?":
         print (Cyan+ "Sub commands support: show, profiles, intents, download "+ CEND)
     if command == "show agents h" or command =="show agents help" or command =="show agents ?": 
-        print (Cyan+ "Items support: all, os , osversion "+ CEND)
+        print (Cyan+ "Items support: all, os , osversion, profiles, intents "+ CEND)
     if command == "show agents all": 
         sensors = GetSensors(rc)
         print (CGREEN + "Here is the sensors detail: " + CEND)
@@ -2345,13 +2345,13 @@ def main():
         print(*VersionList, sep = "\n")
 
     # Agent Profiles
-    if command == "agents profiles h" or command =="agents profiles help" or command =="agents profiles ?" or command =="agents profiles": 
-        print (Cyan+ "Items support: all, detail , create "+ CEND)
-    if command == "agents profiles all": 
+    if command == "show agents profiles h" or command =="show agents profiles help" or command =="show agents profiles ?" or command =="show agents profiles": 
+        print (Cyan+ "Items support: all, detail "+ CEND)
+    if command == "show agents profiles all": 
         profiles = GetAgentProfiles(rc)
         print (CGREEN + "Here is the all Agent Config Profiles configured in your cluster: " + CEND)
         ShowAgentProfiles(profiles)
-    if command == "agents profiles detail":
+    if command == "show agents profiles detail":
         Profiles = GetAgentProfiles(rc)
         ProfilesList = GetProfilesNamewithID(Profiles)
         print (CGREEN + "\nHere are the names and ID of all Profiles in your cluster: " + CEND)
@@ -2366,16 +2366,16 @@ def main():
         ApplyProfile2Filter (rc, profile_id)
 
     # Agent Config Intents
-    if command == "agents intents h" or command =="agents intents help" or command =="agents intents" or command =="agents intents ?": 
+    if command == "show agents intents h" or command =="show agents intents help" or command =="show agents intents" or command =="show agents intents ?": 
         print (Cyan+ "Items support: all "+ CEND)
-    if command == "agents intents all": 
+    if command == "show agents intents all": 
         intents_list = GetConfigIntents(rc)
         print (CGREEN + "Here is the all Agent Config Intents configured in your cluster (Apply VRF to Filter): " + CEND)
         ShowConfigIntents(intents_list)
 
      # Agent Download
     if command == "agents download h" or command =="agents intents help" or command =="agents download" or command =="agents download ?": 
-        print (Cyan+ "Items support: none "+ CEND)
+        print (Cyan+ "Download Tetration Installation file. Items support: none "+ CEND)
     if command == "agents download":
         agent = DownloadAgent(rc)
 
@@ -2433,11 +2433,11 @@ def main():
         remoteVRF(rc)
 
     # Annotations
-    if command == "annotations h" or command =="annotations help" or command =="annotations" or command =="annotations ?": 
+    if command == "annotations h" or command =="annotations help" or command =="annotations" or command =="annotations ?" or command == "anno h" or command =="anno help" or command =="anno" or command =="anno ?": 
         print (Cyan+ "Items support: download, upload  "+ CEND)
-    if command == "annotations download" or command =="annotations down": 
+    if command == "annotations download" or command =="annotations down" or command == "anno download" or command =="anno down": 
         downloadAnnotation(rc)
-    if command == "annotations upload" or command =="annotations up":
+    if command == "annotations upload" or command =="annotations up" or command == "anno upload" or command =="anno up":
         uploadAnnotation(rc)
 
 
@@ -2462,7 +2462,7 @@ def main():
 
 
     # Inventory create
-    if command == "inventories create h" or command =="inventories create help" or command =="inventories create" or command =="inventories create ?": 
+    if command == "inventories create h" or command =="inventories create help" or command =="inventories create" or command =="inventories create ?" or command == "inv create h" or command =="inv create help" or command =="inv create" or command =="inv create ?": 
         print (Cyan+ "Items support: none  "+ CEND)
     if command == "inventories create": 
         CreateInventory (rc)
@@ -2473,7 +2473,7 @@ def main():
     if command == "show orc h" or command =="show orc help" or command =="show orc" or command =="show orc ?": 
         print (Cyan+ "Items support: all, detail  "+ CEND)
     if command == "show orc all": 
-        orchestrators = GetAllOrchestrators(rc)
+        orchestrators = GetOrchestrators(rc)
         print(CGREEN + "Here is the list of Orchestrators in your cluster: " + CEND)
         ShowOrchestrators(orchestrators)
     if command == "show orc detail" or command =="show orc de" or command =="show orc d" or command =="show orc det":
@@ -2489,7 +2489,7 @@ def main():
         ShowOrchestrator(orc_detail)
 
     # Orchestrator create
-    if command == "orchestrators create h" or command =="orchestrators create help" or command =="orchestrators create" or command =="orchestrators create ?": 
+    if command == "orchestrators create h" or command =="orchestrators create help" or command =="orchestrators create" or command =="orchestrators create ?" or command == "orc create h" or command =="orc create help" or command =="orc create" or command =="orc create ?": 
         print (Cyan+ "Items support: vcenter, k8s  "+ CEND)
     if command == "orchestrators create vcenter" or command =="orchestrators create vc": 
         scopes = GetApplicationScopes(rc)
@@ -2590,7 +2590,7 @@ def main():
 
 
     # user create
-    if command == "users create h" or command =="users create help" or command =="users create ?": 
+    if command == "users create h" or command =="users create help" or command =="users create ?" or command == "user create h" or command =="user create help" or command =="user create ?": 
         print (Cyan+ "Create user, sub command: none  "+ CEND)
     if command == "users create": 
         CreateUser (rc)
@@ -2775,6 +2775,8 @@ def main():
 
 
     # onboard New Tetration Cluster
+    if command == "setup ?" or command == "setup h" or command == "setup -h" or command == "setup help": 
+        print(CGREEN +"Here are basic steps to fresh start a Tetration tenant"+ CEND)
     if command == "setup":
         print(CGREEN +"\nHere are basic steps to fresh start a Tetration tenant:"+ CEND)
         print(CGREEN +"\nStep 1: Creating new Tenant and Root Scope:"+ CEND)
@@ -2795,6 +2797,8 @@ def main():
         remoteVRF(rc)
 
     # clean all objects in Tetration scope
+    if command == "clean ?" or command == "clean h" or command == "clean -h" or command == "clean help":
+        print(BLINK + URED +"You are about to delete all objects under a scope."+ CEND)
     if command == "clean":
         print(BLINK + URED +"\nYou are about to delete all objects under a scope."+ CEND)
         choice = input (URED +"\nAre you sure (y/n)?"+ CEND)

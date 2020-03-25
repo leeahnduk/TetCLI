@@ -1,19 +1,34 @@
 # tetcli 
-to interact with Tetration Cluster via the cli
+This application helps to interact with Tetration using CLI. You can do show, create, download, upload into Tetration Analytics Cluster.
+
+## Table of contents
+* [Installation](#Installation)
+* [Screenshots](#screenshots)
+* [How to Use](#UserGuide)
+* [Show Commands](#Show)
+* [Create Commands](#Create)
+* [Setup Commands](#Setup)
+* [Clean Commands](#Clean)
+* [Others Commands](#Others)
+* [Steps to run](#Steps)
+* [Feedback and Author](#Feedback)
 
 ## Installation
 
-### From sources
+From sources
 
-Download the sources from [Github](https://github.com/leeahnduk/tet-cli), extract and execute the following commands
+Download the sources from [Github](https://github.com/leeahnduk/TetCLI.git), extract and execute the following commands
 
 ```
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 
-$ pip install setup.py
 ```
 
-## How to use this application:
+## Screenshots
+![Example screenshot](./tetcli.png)
+
+## UserGuide
+How to use this application:
 To access to the cluster you need to get the API Credentials with the following permissions
 * `sensor_management` - option: SW sensor management: API to configure and monitor status of SW sensors
 * `hw_sensor_management` - option: HW sensor management: API to configure and monitor status of HW sensors
@@ -25,101 +40,160 @@ To access to the cluster you need to get the API Credentials with the following 
 Download the api_credentials.json locally and have it ready to get the information required for the setup.
 
 A quick look for the help will list the current available options.
+To start the script, just use: `python3 tetcli.py --url https://tet-cluster-ip --credential api_credentials.json`
 ```
-$ tetcli -h
-usage: tetcli [-h] [-d] [-q] [-v]
-                    {inventory,vrfs,applications,users,roles,scopes,switches,agents,clear,setup}
-                    ...
 
-Tetration Analytics CLI tool
+Object support:
+  * agents          Interact with Software Sensors in Tetration Cluster
+  * inventories     Interact with Inventory from Tetration Cluster
+  * vrfs            Interact with VRFs in Tetration Cluster
+  * applications    Interact with ADM Application from Tetration Cluster
+  * users           Interact with Users from Tetration Cluster
+  * roles           Interact with Roles in Tetration Cluster
+  * scopes          Interact with Scopes configured in Tetration Cluster
+  * annotations     Download and upload annotations from and into Tetration Cluster
+  * flow            Interact with Flows captured by Tetration Cluster
+  * orchestrators   Interact with External Orchestrators (vCenter and K8s) configured in Tetration Cluster
+  * policies        Interact with Policies inside Application from Tetration Cluster
+  * filehash        Download and upload blacklist or whitelist process binary hash from and into Tetration Cluster
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d, --debug           full application debug mode
-  -q, --quiet           suppress all console output
-  -v, --version         show program's version number and exit
+Operator support:
+  * show            show all items for a object 
+  * show item       show detail of an object item 
+  * create item     create an object item 
+  * setup           onboard a new cluster or tenant
+  * clean           delete all objects in one root scope
 
-sub-commands:
-  {inventory,vrfs,applications,users,roles,scopes,switches,agents,clear,setup}
-    inventory           Interact with Inventory from Tetration Cluster
-    vrfs                Interact with VRFs in Tetration Cluster
-    applications        Interact with ADM Application from Tetration Cluster
-    users               Interact with Users from Tetration Cluster
-    roles               Interact with Roles in Tetration Cluster
-    scopes              Interact with Scopes configured in Tetration Cluster
-    switches            Interact with Hardware Sensors from Tetration Cluster
-    agents              Interact with Software Sensors in Tetration Cluster
-    clear               Clear the configuration
-    setup               Application setup
-
-Usage: tetcli command
 ```
 
 Each subcommand has its own help that list the options available.
 
 ```
-$ tetcli agents -h
-usage: tetcli agents [-h] {delete,list} ...
-
-optional arguments:
-  -h, --help     show this help message and exit
-
-sub-commands:
-  {delete,list}
-    delete       delete the selected software agent via uuid
-    list         list all software agents installed
-
+You can use -h, help, h, ? to get help and options
 ```
 
-### Easy setup
-
-Step 1: Issue `tetcli setup` folow the instructions and place the correct requested information
+## Show
 ```
-$ tetcli setup
-Tetration Analytics cluster (eg: https://great.example.com/): https://great.example.com/
-Tetration API Key: ASDASDASADS
-Tetration API Secret: ASDASDASDASDFFF
+tetcli #  show ?
+Sub commands support: inventories, vrfs, applications, users, roles, scopes, flows, agents, orchestrators, policies
+
+tetcli #  show agents ?
+Items support: all, os , osversion
+
+tetcli #  show inv ?
+Items support: all, detail 
+
+tetcli #  show apps ?
+Items support: all, brief, detail, version, clusters, enforced
+
+tetcli #  show scopes ?
+Items support: all, roots, subscopes 
+
+tetcli #  show vrfs ?
+Items support: all 
+
+tetcli #  show users ?
+Items support: all, detail
+
+tetcli #  show roles ?
+Items support: all, detail 
+
+tetcli #  show flows ?
+Items support: dimensions, metrics 
+
+tetcli #  show orc ?
+Items support: all, detail
+
+tetcli #  show pol ?
+Items support: all, brief, detail 
+```
+## Create
+```
+tetcli #  agents profiles create 
+Create Agent config profile
+
+tetcli #  scopes create ?
+Items support: root, subscope, commit 
+
+tetcli #  vrfs create ?
+Items support: remote 
+
+tetcli #  inventories create ?
+Items support: none. Create inventories
+
+tetcli #  orchestrators create ?
+Items support: vcenter, k8s
+
+tetcli #  roles create ?
+Create role, sub command: none
+
+tetcli #  user create ?
+Create user, sub command: none 
+
+tetcli #  apps create ?
+Create app workspace under a scope without policies, sub command: none  
+
+tetcli #  pol create ?
+Create Policies or Clusters under an existing application workspace, sub command: clusters, ports 
 ```
 
-Step 2: Test if you can successfully query the cluster from the command line
+## Setup
 ```
-$ tetcli agents list
-```
-
-### Manually setup the application
-
-The file `api_credentials.json` downloaded from the cluster is expected to be placed in 
-folder `~/.config/tetcli/` then to define the cluster name you need to create the 
-config file `tetcli.conf` in `%HOME_USER_FOLDER%/.config/tetcli/`
-
-```
-total 16
-0 drwxr-xr-x   4 user  staff  128 Nov 11 16:16 .
-0 drwx------  13 user  staff  416 Nov 11 16:10 ..
-8 -rw-r--r--@  1 user  staff  111 Nov 11 09:52 api_credentials.json
-8 -rw-r--r--   1 user  staff  121 Nov 11 16:16 tetcli.conf
-```
-and the file `tetcli.conf` requires the information:
-```
-[tetcli]
-api_endpoint = https://mygreatapp.example.com
-api_credentials = ~/.config/tetcli/api_credentials.json
+tetcli #  setup ?
+Here are basic steps to fresh start a Tetration tenant
 ```
 
-## More information
+## Clean
+```
+tetcli #  clean ?
+You are about to delete all objects under a scope.
+```
 
-### Options used
+## Others
+```
+tetcli #  agents download ?
+Download Tetration Installation file. Items support: none
 
-#### Current scope for tetcli
-1. inventory
-2. vrfs
-3. applications
-4. users
-5. roles
-6. scopes
-7. switches
-8. agents
+tetcli #  annotations download
+Download annotation file into AnnotationDownload.csv
 
-For any new functionalites open an issue and we will evaluate to add it.
+tetcli #  annotations upload
+Upload annotation file into Tetration scope. Need to put Tetration Annotation csv file: "sampleAnnotationUpload.csv" into the same folder. Sample csv file attached in the github repo.
 
-[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/jumolinas/tetcli)
+tetcli #  roles apply ?
+Apply role to scope, sub command: none  
+
+tetcli #  filehash ?
+Items support: download, upload, delete 
+
+tetcli #  filehash download
+Download Blacklist or Whitelist process binary hash information into "FileHashDown.csv".
+
+tetcli #  filehash upload
+Upload Blacklist or Whitelist process binary hash file into Tetration scope. Need to put Blacklist or Whitelist process binary hash csv file: "sampleFileHashUpload.csv" into the same folder. Sample csv file attached in the github repo. Sample csv: HashType,FileHash,FileName,Notes
+
+tetcli #  filehash delete
+Delete Blacklist or Whitelist process binary hash file from Tetration scope. Need to put Blacklist or Whitelist process binary hash csv delete file: "FileHashDelete.csv" into the same folder. Sample csv file attached in the github repo.
+
+tetcli #  policies download
+Get Server Ports config to root scope. Return server ports config. Return a JSON file.
+
+tetcli #  policies upload
+Upload Server Ports config to root scope for ADM support. Need to put server port config file: "server_ports.txt" into the same folder "server_ports.txt". Sample txt file attached in the github repo.
+```
+
+
+## Steps
+
+Step 1: Issue `$ pip3 install -r requirements.txt` to install all required packages.
+
+Step 2: Run the apps: `python3 tetcli.py --url https://tet-cluster-ip --credential api_credentials.json`
+
+Step 3: Test if you can successfully query the cluster from the command line
+```
+tetcli #  show agents all
+Here is the sensors detail: 
+```
+
+## Feedback
+Any feedback can send to me: Le Anh Duc (leeahnduk@yahoo.com or anhdle@cisco.com)
