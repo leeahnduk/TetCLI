@@ -1,0 +1,392 @@
+[
+    {
+        "id": "5e5dcaae497d4f2c0ac43f89",
+        "filter_type": "Cluster",
+        "consistent_uuid": "5e5dcaae497d4f2c0ac43f89",
+        "application_id": "5e5cd941497d4f7c0b212808",
+        "version": "v2",
+        "name": "cluster",
+        "description": null,
+        "query": {
+            "type": "and",
+            "filters": [
+                {
+                    "field": "vrf_id",
+                    "type": "eq",
+                    "value": 676768
+                },
+                {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.223"
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.224"
+                        }
+                    ]
+                }
+            ]
+        },
+        "short_query": {
+            "type": "or",
+            "filters": [
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.223"
+                },
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.224"
+                }
+            ]
+        },
+        "approved": false,
+        "created_at": 1583205038,
+        "updated_at": 1583205038,
+        "alternate_queries": [
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.223"
+                    },
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.224"
+                    }
+                ]
+            },
+            {
+                "field": "host_name",
+                "type": "contains",
+                "value": "End-Proxy"
+            },
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "BackEnd-Proxy"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "FrontEnd-Proxy"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5e5dcaae497d4f2c0ac43f8c",
+        "filter_type": "Cluster",
+        "consistent_uuid": "5e5cda0f755f02775b356364",
+        "application_id": "5e5cd941497d4f7c0b212808",
+        "version": "v2",
+        "name": "lychee",
+        "description": null,
+        "query": {
+            "type": "and",
+            "filters": [
+                {
+                    "field": "vrf_id",
+                    "type": "eq",
+                    "value": 676768
+                },
+                {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.230"
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.231"
+                        }
+                    ]
+                }
+            ]
+        },
+        "short_query": {
+            "type": "or",
+            "filters": [
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.230"
+                },
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.231"
+                }
+            ]
+        },
+        "approved": true,
+        "created_at": 1583205039,
+        "updated_at": 1583205039,
+        "alternate_queries": [
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.230"
+                    },
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.231"
+                    }
+                ]
+            },
+            {
+                "field": "host_name",
+                "type": "contains",
+                "value": "lychee"
+            },
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "lychee1"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "lychee2"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5e5dcaaf497d4f2c0ac43f8d",
+        "filter_type": "Cluster",
+        "consistent_uuid": "5e5cda0f755f02775b356365",
+        "application_id": "5e5cd941497d4f7c0b212808",
+        "version": "v2",
+        "name": "OpenCart",
+        "description": null,
+        "query": {
+            "type": "and",
+            "filters": [
+                {
+                    "field": "vrf_id",
+                    "type": "eq",
+                    "value": 676768
+                },
+                {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.225"
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.226"
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "192.168.32.227"
+                        }
+                    ]
+                }
+            ]
+        },
+        "short_query": {
+            "type": "or",
+            "filters": [
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.225"
+                },
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.226"
+                },
+                {
+                    "field": "ip",
+                    "type": "eq",
+                    "value": "192.168.32.227"
+                }
+            ]
+        },
+        "approved": true,
+        "created_at": 1583205039,
+        "updated_at": 1583205039,
+        "alternate_queries": [
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.225"
+                    },
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.226"
+                    },
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.227"
+                    }
+                ]
+            },
+            {
+                "field": "host_name",
+                "type": "contains",
+                "value": "OpenCart0"
+            },
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "OpenCart01"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "OpenCart02"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "OpenCart03"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5e5dcaaf497d4f2c0ac43f8e",
+        "filter_type": "Cluster",
+        "consistent_uuid": "5e5cda0f755f02775b356363",
+        "application_id": "5e5cd941497d4f7c0b212808",
+        "version": "v2",
+        "name": "DB",
+        "description": null,
+        "query": {
+            "type": "and",
+            "filters": [
+                {
+                    "field": "host_name",
+                    "type": "contains",
+                    "value": "sql"
+                },
+                {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "ip",
+                            "type": "subnet",
+                            "value": "192.168.32.0/24"
+                        },
+                        {
+                            "field": "user_orchestrator_Apps",
+                            "type": "eq",
+                            "value": "MTier"
+                        }
+                    ]
+                }
+            ]
+        },
+        "short_query": {
+            "field": "host_name",
+            "type": "contains",
+            "value": "sql"
+        },
+        "approved": true,
+        "created_at": 1583205039,
+        "updated_at": 1583205039,
+        "alternate_queries": [
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.232"
+                    },
+                    {
+                        "field": "ip",
+                        "type": "eq",
+                        "value": "192.168.32.233"
+                    }
+                ]
+            },
+            {
+                "field": "host_name",
+                "type": "contains",
+                "value": "sql"
+            },
+            {
+                "type": "or",
+                "filters": [
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "sql1"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "sql2"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5e700e41497d4f21bc211ff5",
+        "filter_type": "Cluster",
+        "consistent_uuid": "5e700e41497d4f21bc211ff5",
+        "application_id": "5e5cd941497d4f7c0b212808",
+        "version": "v2",
+        "name": "user-defined-cluster",
+        "description": null,
+        "query": {
+            "type": "none"
+        },
+        "short_query": {
+            "type": "none"
+        },
+        "approved": false,
+        "created_at": 1584401985,
+        "updated_at": 1584401985,
+        "alternate_queries": []
+    }
+]

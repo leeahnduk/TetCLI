@@ -1,0 +1,13 @@
+{
+    "id": "5e7aaf62755f023688a327c2",
+    "name": "CLI",
+    "app_scope_id": "5e79c181497d4f7c0b214cfe",
+    "description": "Created by Tetration API",
+    "author": "Site Admin",
+    "primary": false,
+    "alternate_query_mode": true,
+    "enforced_version": null,
+    "enforcement_enabled": false,
+    "created_at": 1585098594,
+    "latest_adm_version": 1
+}

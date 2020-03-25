@@ -1,0 +1,102 @@
+{
+    "absolute_policies": [],
+    "default_policies": [
+        {
+            "id": "5e6f2c92755f023700a312ff",
+            "application_id": "5e546175755f0235f2a2f4d4",
+            "version": "v3",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 99,
+            "l4_params": [
+                {
+                    "id": "5e6f3c11755f0235f2a315b1",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ],
+                    "description": "Updated by API",
+                    "approved": true
+                },
+                {
+                    "id": "5e6f3cbd497d4f21bc211f14",
+                    "proto": 17,
+                    "port": [
+                        123,
+                        123
+                    ],
+                    "description": "Updated by API",
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5e1cf91c497d4f0483d0c39d",
+            "consumer_filter": {
+                "_id": "5e1cf91c497d4f0483d0c39d",
+                "id": "5e1cf91c497d4f0483d0c39d",
+                "filter_type": "UserInventoryFilter",
+                "name": "Prod",
+                "description": null,
+                "short_query": {
+                    "type": "contains",
+                    "field": "user_orchestrator_Environment",
+                    "value": "Prod"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_orchestrator_Environment",
+                            "type": "contains",
+                            "value": "Prod"
+                        }
+                    ]
+                },
+                "public": false,
+                "primary": false,
+                "created_at": 1578957084,
+                "updated_at": 1578957084,
+                "app_scope_id": "5e1be11a755f0277f20f498c"
+            },
+            "provider_filter_id": "5e1cf939755f0277fa0f4acf",
+            "provider_filter": {
+                "_id": "5e1cf939755f0277fa0f4acf",
+                "id": "5e1cf939755f0277fa0f4acf",
+                "filter_type": "UserInventoryFilter",
+                "name": "PCI",
+                "description": null,
+                "short_query": {
+                    "type": "contains",
+                    "field": "user_orchestrator_PCI",
+                    "value": "Yes"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_orchestrator_PCI",
+                            "type": "contains",
+                            "value": "Yes"
+                        }
+                    ]
+                },
+                "public": false,
+                "primary": false,
+                "created_at": 1578957113,
+                "updated_at": 1578957113,
+                "app_scope_id": "5e1be11a755f0277f20f498c"
+            }
+        }
+    ],
+    "catch_all_action": "ALLOW"
+}

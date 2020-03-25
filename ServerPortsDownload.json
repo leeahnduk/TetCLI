@@ -1,0 +1,1 @@
+"{\"version\": 1, \"host_config\": [{\"udp_server_ports\": [103], \"tcp_server_ports\": [100, 101, 102], \"address_type\": \"IPV4\", \"ip_address\": \"1.1.1.1\"}, {\"udp_server_ports\": [], \"tcp_server_ports\": [200, 201, 202], \"address_type\": \"IPV4\", \"ip_address\": \"1.1.1.2\"}]}"

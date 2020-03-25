@@ -1,0 +1,10 @@
+{"host_config": [
+{"ip_address": "1.1.1.1",
+"tcp_server_ports": [100, 101, 102],
+"udp_server_ports": [103]
+},
+{"ip_address": "1.1.1.2",
+"tcp_server_ports": [200, 201, 202]
+}
+]
+}
