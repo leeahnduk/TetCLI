@@ -56,6 +56,7 @@ Object support:
   * orchestrators   Interact with External Orchestrators (vCenter and K8s) configured in Tetration Cluster
   * policies        Interact with Policies inside Application from Tetration Cluster
   * filehash        Download and upload blacklist or whitelist process binary hash from and into Tetration Cluster
+  * report          Build report for a Tetration cluster 
 
 Operator support:
   * show            show all items for a object 
@@ -135,6 +136,31 @@ Create app workspace under a scope without policies, sub command: none
 
 tetcli #  pol create ?
 Create Policies or Clusters under an existing application workspace, sub command: clusters, ports 
+```
+## Report
+```
+tetcli #  report workloads all 
+Report all installed workloads in your cluster in all scopes
+
+tetcli #  report workloads detail
+Detail Report about a specific workload 
+
+tetcli #  report workloads stats
+Detail Workload communication report from time (t0) to time(t1) 
+
+tetcli #  report workloads software 
+Detail Installed Software Packages report for a specific workload
+
+tetcli #  report workloads vulnerabilities ?
+Detail Vulnerable Software Packages report for a specific workload or all workloads that match a CVE Score query. Sub: workload or all
+
+tetcli #  report workloads vulnerabilities all
+Detail Vulnerable Software Packages report for all workloads that match a CVE score query.
+
+tetcli #  report workloads processes ?
+Detail Running processes report for a specific workload. Sub command: summary or all
+
+
 ```
 
 ## Setup

@@ -10,6 +10,7 @@ import csv
 from columnar import columnar
 from time import mktime
 from datetime import datetime
+import datetime
 from argparse import ArgumentParser
 from collections import defaultdict
 from tqdm import tqdm as progress
@@ -32,7 +33,7 @@ LBLUE = "\33[1;34m"
 # =================================================================================
 # feedback: Le Anh Duc - anhdle@cisco.com
 # See reason below -- why verify=False param is used
-# python3 tetcli.py --url https://192.168.30.4 --credential dmz_api_credentials.json
+# python3 tetcli.py --url https://10.71.129.30/ --credential Japan_api_credentials.json
 # =================================================================================
 requests.packages.urllib3.disable_warnings()
 
@@ -49,6 +50,299 @@ def CreateRestClient():
     rc = RestClient(args.url,
                     credentials_file=args.credential, verify=False)
     return rc
+
+
+# =================================================================================
+# Report
+# =================================================================================
+
+def ShowAgentProfile(agent):
+    """
+        Detail of an agent
+        """
+    columns = None
+    if columns:
+            headers = []
+            data_list = []
+    else:
+        headers = ['Host Name', 'Agent Type', 'Last Check-in', 'Platform', 'Version', 'Scopes']
+        data_list = [[agent['host_name'], agent['agent_type'], time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(agent['last_config_fetch_at'])), agent['platform'], agent['current_sw_version'], ','.join(set([y['vrf'] for y in agent['interfaces']]))]]
+    table = columnar(data_list, headers, no_borders=False)
+    print(table)
+
+def selectAgent(sensors):
+    # Return UUID for one Sensors that we choose
+    print (Cyan + "\nHere are all Software Sensors in your cluster: " + CEND)
+    ShowAgents(sensors)
+    choice = input('\nSelect which Sensor (Number) above you want to know detail: ')
+    return sensors['results'][int(choice)-1]['uuid']
+
+
+def GetAgentProfile(rc,uuid):
+    resp = rc.get('/workload/' + uuid)
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def GetWorkloadStats(rc,uuid, t0, t1, td):
+    #td = 15 * 60 # 15 minutes
+    resp = rc.get('/workload/' + uuid + '/stats?t0=' + str(t0) + '&t1=' + str(t1) + '&td=' + str(td))
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def ShowWorkloadStats(stats):
+    columns = None
+    if columns:
+            headers = []
+            data_list = []
+    else:
+        headers = ['Time', 'Flow Count', 'received bytes', 'received packets', 'transmitted bytes', 'transmitted packets']
+        data_list = [[x['timestamp'], x['result']['flow_count'], x['result']['rx_byte_count'],  x['result']['rx_packet_count'], x['result']['tx_byte_count'], x['result']['tx_packet_count']]for x in stats ]
+    table = columnar(data_list, headers, no_borders=False)
+    print(table)
+
+def GetSwPackages(rc,uuid):
+    resp = rc.get('/workload/' + uuid + '/packages')
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def ShowSwPackages(packages):
+    columns = None
+    if columns:
+            headers = []
+            data_list = []
+    else:
+        headers = ['Name', 'Architecture', 'Publisher', 'Version']
+        data_list = [[x['name'], x['architecture'], x['publisher'],  x['version']]for x in packages ]
+    table = columnar(data_list, headers, no_borders=False)
+    print(table)
+
+def GetVul(rc,uuid):
+    resp = rc.get('/workload/' + uuid + '/vulnerabilities')
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def ShowVul(vuls):
+    data_list = []
+    headers = ['Package Information', 'CVE ID', 'v2 Score', 'v3 Score', 'v2_severity', 'v2_access_complexity', 'v3_base_severity', 'v3_attack_complexity']
+    search_key = 'v3_score'
+    for x in vuls: 
+        if search_key in x.keys(): data_list.append([x['package_infos'], x['cve_id'], x['v2_score'], x['v3_score'], x['v2_severity'], x['v2_access_complexity'],  x['v3_base_severity'], x['v3_attack_complexity']])
+        else: data_list.append([x['package_infos'], x['cve_id'], x['v2_score'], 'None', x['v2_severity'], x['v2_access_complexity'],  'None' , 'None'])
+    table = columnar(data_list, headers, no_borders=False)
+    print(table)
+
+def GetProc(rc,uuid):
+    resp = rc.get('/workload/' + uuid + '/process/list')
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def ShowProc(proc):
+    data_list = []
+    headers = ['PID', 'PPID', 'Proc State', 'Username','CMD', 'Exec_Path', 'Package Name', 'Package Version']
+    search_key = 'pkg_info_name'
+    for x in proc['ps_row']:
+        if search_key in x.keys(): data_list. append([x['pid'], x['ppid'], x['proc_state'],  x['username'], x['cmd'], x['exec_path'], x['pkg_info_name'],  x['pkg_info_version']])
+        else: data_list. append([x['pid'], x['ppid'], x['proc_state'], x['username'], x['cmd'], x['exec_path'], 'NA',  'NA'])
+    table = columnar(data_list, headers, no_borders=False)
+    print(table)
+
+def GetProcTree(rc,uuid):
+    payload = {}
+    resp = rc.post('/workload/' + uuid + '/process/tree/ids', json_body=json.dumps(payload))
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def GetProcTreeDetail(rc,uuid, handle):
+    payload = {"handle": handle}
+    resp = rc.post('/workload/' + uuid + '/process/tree/details', json_body=json.dumps(payload))
+
+    if resp.status_code != 200:
+        print(URED + "Failed to retrieve agent detail")
+        print(resp.status_code)
+        print(resp.text)
+    else:
+        return resp.json()
+
+def ShowProcTreeDetail(procDetail):
+    data_list = []
+    headers = ['PID', 'PPID', 'Proc State', 'Username','CMD', 'Exec_Path', 'Package Name', 'Package Version']
+    search_key = 'pkg_info_name'
+    for x in procDetail['results']:
+        if search_key in x.keys(): data_list. append([x['process_id'], x['parent_process_id'], x['proc_state'],  x['username'], x['command_string'], x['exec_path'], x['pkg_info_name'],  x['pkg_info_version']])
+        else: data_list. append([x['process_id'], x['parent_process_id'], x['proc_state'], x['username'], x['command_string'], x['exec_path'], 'NA',  'NA'])
+    table = columnar(data_list, headers, no_borders=False)
+    print(table)
+
+
+def get_inventory(rc, end_point, req_payload):
+    '''
+    Get the list of inventory items matching the query
+    '''
+
+    all_result = []
+
+    resp = rc.post(end_point, json_body=json.dumps(req_payload))
+    results = resp.json()
+
+    all_result += results["results"]
+
+    while results.get("offset"):
+        # Get the offset ID for page 2
+        next_page = results["offset"]
+        # Set the offset to page 2
+        req_payload["offset"] = next_page
+
+        resp = rc.post(end_point, json_body=json.dumps(req_payload))
+        results = resp.json()
+
+        all_result += results["results"]
+
+    return all_result
+
+
+def get_inventory_cve(rc):
+
+    criticality = int(input("Which CVE Score you want to query your inventory (from 0 to 10): "))
+    req_payload = {"filter": {"type": "or",
+                              "filters": [{"type": "gt", "field": "host_tags_cvss2", "value": criticality},
+                                          {"type": "gt", "field": "host_tags_cvss3", "value": criticality}]}}
+
+#    req_payload = {'filter': {"type": "eq", "field": "ip", "value": "192.168.2.98"}}
+
+
+    cve_hosts = get_inventory(rc, '/inventory/search', req_payload)
+
+    #print (json.dumps(cve_hosts, indent=4))
+
+    cve_list = []   # store host data with CVE info
+
+    for host in cve_hosts:
+
+        host_uuid = str(host["host_uuid"])
+
+        host_name = host['host_name']
+
+        results = GetVul(rc,host_uuid)
+
+        #print (CYELLOW + 'Gathering CVE data for ' + host_name + " with UUID " + host_uuid + CEND)
+
+        #print (json.dumps(results, indent=4))
+
+        for pkg in results:
+            cve_dict = {}
+            if "v2_score" in pkg.keys():
+                if "v3_score" in pkg.keys():
+                    if (int(pkg["v2_score"]) > criticality) or int(pkg["v3_score"]) > criticality :
+                        cve_dict["IP"] = host["ip"]
+                        cve_dict["Hostname"] = host["host_name"]
+                        cve_dict["OS"] = host["os"]
+                        cve_dict["Version"] = host["os_version"]
+                        cve_dict["Package Info"] = pkg["package_infos"]
+                        cve_dict["Scope"] = host["tags_scope_name"]
+                        cve_dict["CVE ID"] = pkg["cve_id"]
+                   
+                        cve_dict["CVE v2 Score"] = pkg["v2_score"]
+                        cve_dict["CVE v2 Severity"] = pkg["v2_severity"]
+                        cve_dict["CVE v2 access vector"] = pkg["v2_access_vector"]
+                        cve_dict["CVE v2 access complexity"] = pkg["v2_access_complexity"]
+
+                        cve_dict["CVE v3 Score"] = pkg["v3_score"]
+                        cve_dict["CVE v3 Severity"] = pkg["v3_base_severity"]
+                        cve_dict["CVE v3 attack vector"] = pkg["v3_attack_vector"]
+                        cve_dict["CVE v3 attack complexity"] = pkg["v3_attack_complexity"]
+                        cve_dict["CVE v3 availability impact"] = pkg["v3_availability_impact"]
+                else:
+                    if (int(pkg["v2_score"]) > criticality):
+                        cve_dict["IP"] = host["ip"]
+                        cve_dict["Hostname"] = host["host_name"]
+                        cve_dict["OS"] = host["os"]
+                        cve_dict["Version"] = host["os_version"]
+                        cve_dict["Package Info"] = pkg["package_infos"]
+                        cve_dict["Scope"] = host["tags_scope_name"]
+                        cve_dict["CVE ID"] = pkg["cve_id"]
+                   
+                        cve_dict["CVE v2 Score"] = pkg["v2_score"]
+                        cve_dict["CVE v2 Severity"] = pkg["v2_severity"]
+                        cve_dict["CVE v2 access vector"] = pkg["v2_access_vector"]
+                        cve_dict["CVE v2 access complexity"] = pkg["v2_access_complexity"]
+            else:
+                if (int(pkg["v3_score"]) > criticality):
+                    cve_dict["IP"] = host["ip"]
+                    cve_dict["Hostname"] = host["host_name"]
+                    cve_dict["OS"] = host["os"]
+                    cve_dict["Version"] = host["os_version"]
+                    cve_dict["Package Info"] = pkg["package_infos"]
+                    cve_dict["Scope"] = host["tags_scope_name"]
+                    cve_dict["CVE ID"] = pkg["cve_id"]
+               
+                    cve_dict["CVE v3 Score"] = pkg["v3_score"]
+                    cve_dict["CVE v3 Severity"] = pkg["v3_base_severity"]
+                    cve_dict["CVE v3 attack vector"] = pkg["v3_attack_vector"]
+                    cve_dict["CVE v3 attack complexity"] = pkg["v3_attack_complexity"]
+                    cve_dict["CVE v3 availability impact"] = pkg["v3_availability_impact"]
+
+            cve_list.append(cve_dict)
+
+            cve_list_final = []
+            for string in cve_list:
+                if (string != ""): cve_list_final.append(string)
+
+    # specify csv file for exporting
+    export_csvfile = 'cve_hosts_final.csv'
+    temp_csv = 'cve_hosts.csv'
+
+    # specify csv header fields
+    csv_header = ["IP", "Hostname", "OS", "Version", "Package Info", "Scope", "CVE ID", 
+                  "CVE v2 Score", "CVE v2 Severity", "CVE v2 access vector", "CVE v2 access complexity",
+                  "CVE v3 Score", "CVE v3 Severity", "CVE v3 attack vector", "CVE v3 attack complexity", "CVE v3 availability impact"]
+
+    
+    # Export file in csv format
+    with open(temp_csv, 'w+') as f:
+        writer = csv.DictWriter(f, csv_header, quoting=csv.QUOTE_ALL)
+        writer.writeheader()
+        for row in cve_list_final:
+            writer.writerow(row)
+
+    with open('cve_hosts.csv') as infile, open('cve_hosts_final.csv', 'w', newline='') as output:
+         writer = csv.writer(output)
+         for row in csv.reader(infile):
+             if any(field.strip() for field in row):
+                 writer.writerow(row)
+
+    print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
+
+
 
 # =================================================================================
 # clean
@@ -1962,8 +2256,8 @@ def ShowAgents(sensors):
             headers = []
             data_list = []
     else:
-        headers = ['Host Name', 'Agent Type', 'Last Check-in', 'Install Date', 'Version', 'Scopes']
-        data_list = [[x['host_name'], x['agent_type'], time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(x['last_config_fetch_at'])), time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(x['created_at'])), x['current_sw_version'], ','.join(set([y['vrf'] for y in x['interfaces']])) ]for x in sensors['results'] ]
+        headers = ['Number', 'Host Name', 'UUID', 'Agent Type', 'Last Check-in', 'Install Date', 'Version', 'Scopes']
+        data_list = [[i+1, x['host_name'], x['uuid'], x['agent_type'], time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(x['last_config_fetch_at'])), time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(x['created_at'])), x['current_sw_version'], ','.join(set([y['vrf'] for y in x['interfaces']])) ]for i,x in enumerate(sensors['results']) ]
     table = columnar(data_list, headers, no_borders=False)
     print(table)
 
@@ -2312,7 +2606,7 @@ def remoteVRF(rc):
 def main():
     print (BLINK + BOLD+ CGREEN + "Welcome to Tetration CLI !!!" + CEND)
     print (BOLD+ Cyan+ UNDERLINE + ITALIC +"Object support:"+ CEND)
-    print (BOLD+ CYELLOW +"- agents \n- inventories \n- vrfs \n- applications \n- users \n- roles \n- scopes \n- annotations \n- flow \n- orchestrators \n- policies" + CEND)
+    print (BOLD+ CYELLOW +"- agents \n- inventories \n- vrfs \n- applications \n- users \n- roles \n- scopes \n- annotations \n- flow \n- orchestrators \n- policies \n- report" + CEND)
     print (BOLD+ Cyan+ UNDERLINE + ITALIC +"Operator support:"+ CEND)
     print (BOLD+ CYELLOW +"- show: show all  \n- show item: show detail of object item \n- create item: create an object item \n- setup: onboard a new cluster \n- clear: delete all objects in one root scope" + CEND)
     rc = CreateRestClient()
@@ -2795,6 +3089,85 @@ def main():
         ApplyProfile2Filter (rc, profile_id)
         print(CGREEN +"\nStep 4c: Move telemetry to Tenant VRF"+ CEND)
         remoteVRF(rc)
+
+    # report 
+    if command == "report h" or command =="report help" or command =="report ?": 
+        print (BOLD+ CYELLOW + "Build report for Tetration, sub command: workloads  "+ CEND)
+    if command == "report workloads" or command == "report wl" or command == "report workloads ?" or command == "report workloads h" or command == "report workloads help" or command == "report wl ?" or command == "report wl h" or command == "report wl help":
+        print (BOLD+ CYELLOW + "Build report for Tetration workloads, sub command: all or detail or stats or software or vulnerabilities or processes "+ CEND)
+        print (BOLD+ CYELLOW + "All - Report all installed workloads in your cluster in all scopes  "+ CEND)
+        print (BOLD+ CYELLOW + "Detail - Detail Report about a specific workload  "+ CEND)
+        print (BOLD+ CYELLOW + "Stats - Detail Workload communication report from time (t0) to time(t1)  "+ CEND)
+        print (BOLD+ CYELLOW + "Software - Detail Installed Software Packages report for a specific workload  "+ CEND)
+        print (BOLD+ CYELLOW + "Vulnerabilities - Detail Vulnerable Software Packages report for a specific workload or all workloads that match a CVE Score query. Sub: workload or all  "+ CEND)
+        print (BOLD+ CYELLOW + "Processes - Detail Running processes report for a specific workload. Sub command: summary or all  "+ CEND)
+    if command == "report workloads all" or command == "report wl all" or command == "report workloads a" or command == "report wl a": 
+        sensors = GetSensors(rc)
+        print (BOLD+ CYELLOW + "\nHere are all Software Sensors in your cluster: " + CEND)
+        ShowAgents(sensors)
+    if command == "report workloads detail" or command == "report wl detail" or command == "report workloads d" or command == "report wl d": 
+        rc = CreateRestClient()
+        sensors = GetSensors(rc)
+        uuid = selectAgent(sensors)
+        agent = GetAgentProfile(rc,uuid)
+        ShowAgentProfile(agent)
+    if command == "report workloads stats" or command == "report wl stats" or command == "report workloads st" or command == "report wl st": 
+        rc = CreateRestClient()
+        sensors = GetSensors(rc)
+        uuid = selectAgent(sensors)
+        from_year = input(CYELLOW + "From which year (yyyy) you want to query: "+CEND)
+        from_month = input(CYELLOW + "Month (mm)? "+CEND)
+        from_day = input(CYELLOW + "Day (dd)? "+CEND)
+        to_year = input(CYELLOW + "To which year (yyyy) you want to query: "+CEND)
+        to_month = input(CYELLOW + "Month (mm)? "+CEND)
+        to_day = input(CYELLOW + "Day (dd)? "+CEND)
+        td = input(CYELLOW + "What is the granularity (day, hour or minute)? "+CEND)
+        t0 = round(datetime.datetime(int(from_year),int(from_month),(int(from_day)+1),0,0).timestamp())
+        t1 = round(datetime.datetime(int(to_year),int(to_month),(int(to_day)+1),0,0).timestamp())
+        stats = GetWorkloadStats(rc,uuid,t0,t1,td)
+        print ("Here is the detail communication for your agent with UUID: " + uuid + " from " + from_day + "/"+ from_month + "/"+ from_year+ " to " + to_day + "/"+ to_month + "/"+ to_year)
+        ShowWorkloadStats(stats)
+    if command == "report workloads software" or command == "report wl software" or command == "report workloads sw" or command == "report wl sw": 
+        rc = CreateRestClient()
+        sensors = GetSensors(rc)
+        uuid = selectAgent(sensors)
+        packages = GetSwPackages(rc,uuid)
+        print ("Here are all the software packages installed in your agent with UUID: " + uuid)
+        ShowSwPackages(packages)
+    if command == "report workloads vulnerabilities" or command == "report wl vulnerabilities" or command == "report workloads vul" or command == "report wl vul": 
+        print (BOLD+ CYELLOW + "Vulnerabilities - Detail Vulnerable Software Packages report for a specific workload or all workloads that match a CVE Score query. Sub: workload or all  "+ CEND)
+        print (BOLD+ CYELLOW + "Please choose workloads or all as subcommand"+ CEND)
+    if command == "report workloads vulnerabilities all" or command == "report wl vulnerabilities all" or command == "report workloads vul all" or command == "report wl vul all": 
+        rc = CreateRestClient()
+        get_inventory_cve(rc)
+    if command == "report workloads vulnerabilities workloads" or command == "report wl vulnerabilities workloads" or command == "report workloads vul wl" or command == "report wl vul wl": 
+        rc = CreateRestClient()
+        sensors = GetSensors(rc)
+        uuid = selectAgent(sensors)
+        vuls = GetVul(rc,uuid)
+        print ("Here are all vulnerable packages installed in your agent with UUID: " + uuid)
+        ShowVul(vuls)
+    if command == "report workloads processes" or command == "report wl processes" or command == "report workloads proc" or command == "report wl proc": 
+        print (BOLD+ CYELLOW + "Processes - Detail Running processes report for a specific workload. Sub command: summary or all  "+ CEND)
+        print (BOLD+ CYELLOW + "Please choose summary or all as subcommand"+ CEND)
+    if command == "report workloads processes all" or command == "report wl processes all" or command == "report workloads proc all" or command == "report wl proc all": 
+        rc = CreateRestClient()
+        sensors = GetSensors(rc)
+        uuid = selectAgent(sensors)
+        proc = GetProc(rc,uuid)
+        print ("Here are all long running processes in your agent with UUID: " + uuid)
+        ShowProc(proc)
+    if command == "report workloads processes summary" or command == "report wl processes summary" or command == "report workloads proc sum" or command == "report wl proc sum": 
+        rc = CreateRestClient()
+        sensors = GetSensors(rc)
+        uuid = selectAgent(sensors)
+        proc = GetProcTree(rc,uuid)
+        handle = proc['process_summary'][0]['summary'][0]['handle']
+        procDetail = GetProcTreeDetail(rc,uuid, handle)
+        print ("Here are  process snapshot detail in your agent with UUID: " + uuid)
+        #print (json.dumps(procDetail, indent=4))
+        ShowProcTreeDetail(procDetail)
+
 
     # clean all objects in Tetration scope
     if command == "clean ?" or command == "clean h" or command == "clean -h" or command == "clean help":
