@@ -48,8 +48,6 @@
     "rev_policy_permitted",
     "fwd_policy_rejected",
     "rev_policy_rejected",
-    "fwd_policy_misdropped",
-    "rev_policy_misdropped",
     "fwd_policy_escaped",
     "rev_policy_escaped",
     "fwd_null_count",
@@ -67,5 +65,11 @@
     "fwd_allzero_count",
     "rev_allzero_count",
     "fwd_pingdeath_count",
-    "rev_pingdeath_count"
+    "rev_pingdeath_count",
+    "fwd_process_string",
+    "rev_process_string",
+    "fwd_process_owner",
+    "rev_process_owner",
+    "fwd_pid",
+    "rev_pid"
 ]

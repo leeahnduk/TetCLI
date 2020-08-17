@@ -1,0 +1,477 @@
+[
+    {
+        "id": "5ceb7919755f026ca4a468db",
+        "name": "Lab",
+        "app_scope_id": "5ce21068755f0278f6a468d9",
+        "description": null,
+        "author": "Takayuki Mitsue",
+        "primary": true,
+        "alternate_query_mode": true,
+        "enforced_version": 0,
+        "enforcement_enabled": false,
+        "created_at": 1558935833,
+        "latest_adm_version": 2,
+        "version": "v2",
+        "app_scope": {
+            "filter_type": "AppScope",
+            "id": "5ce21068755f0278f6a468d9",
+            "name": "tmitsue:Lab",
+            "description": null,
+            "short_name": "Lab",
+            "priority": "003:001:Z",
+            "short_priority": 1,
+            "policy_priority": 2,
+            "query": {
+                "type": "and",
+                "filters": [
+                    {
+                        "field": "vrf_id",
+                        "type": "eq",
+                        "value": 676768
+                    },
+                    {
+                        "field": "user_location",
+                        "type": "eq",
+                        "value": "Lab"
+                    }
+                ]
+            },
+            "short_query": {
+                "type": "eq",
+                "field": "user_location",
+                "value": "Lab"
+            },
+            "dirty": false,
+            "dirty_short_query": null,
+            "vrf_id": 676768,
+            "parent_app_scope_id": "5cde5ce5755f027d7ea468dd",
+            "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+            "child_app_scope_ids": [
+                "5ce21096497d4f519e88fcbc",
+                "5ce210a6755f0224eda468d8",
+                "5d19a879497d4f47c588fcbc",
+                "5d96d9e4497d4f3b5ada73db"
+            ],
+            "created_at": 1558319208,
+            "updated_at": 1584320485,
+            "deleted_at": null
+        },
+        "absolute_policies": [
+            {
+                "consumer_filter_id": "5cde5ce5755f027d7ea468dd",
+                "provider_filter_id": "5ce210a6755f0224eda468d8",
+                "consumer_filter_name": "tmitsue",
+                "provider_filter_name": "tmitsue:Lab:Bugzilla",
+                "l4_params": [
+                    {
+                        "port": [
+                            80,
+                            80
+                        ],
+                        "proto": 6,
+                        "approved": true
+                    }
+                ],
+                "action": "DENY",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d243e73755f020211a468d7",
+                "provider_filter_id": "5d243e63755f021628a46931",
+                "consumer_filter_name": "Non-Production",
+                "provider_filter_name": "Production",
+                "l4_params": [
+                    {
+                        "port": [
+                            1,
+                            65535
+                        ],
+                        "proto": 6,
+                        "approved": true
+                    }
+                ],
+                "action": "DENY",
+                "priority": 100
+            }
+        ],
+        "default_policies": [
+            {
+                "consumer_filter_id": "5ce34f39755f023fc9a468e2",
+                "provider_filter_id": "5ce21096497d4f519e88fcbc",
+                "consumer_filter_name": "Lab-Client",
+                "provider_filter_name": "tmitsue:Lab:Shared Service",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "proto": 1,
+                        "confidence": 0.81,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 6,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            80,
+                            80
+                        ],
+                        "proto": 6,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.95,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 4.0,
+                "__internal_dst_risk_exposure": 190.0,
+                "__internal_security_posture": 760.0
+            },
+            {
+                "consumer_filter_id": "5ce34f39755f023fc9a468e2",
+                "provider_filter_id": "5cde5ce5755f027d7ea468dd",
+                "consumer_filter_name": "Lab-Client",
+                "provider_filter_name": "tmitsue",
+                "l4_params": [
+                    {
+                        "port": [
+                            3479,
+                            3481
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5004,
+                            5004
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            33434,
+                            33434
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 4.0,
+                "__internal_dst_risk_exposure": 8740.0,
+                "__internal_security_posture": 34960.0
+            },
+            {
+                "consumer_filter_id": "5ce34f39755f023fc9a468e2",
+                "provider_filter_id": "5ce210a6755f0224eda468d8",
+                "consumer_filter_name": "Lab-Client",
+                "provider_filter_name": "tmitsue:Lab:Bugzilla",
+                "l4_params": [
+                    {
+                        "port": [
+                            22,
+                            22
+                        ],
+                        "proto": 6,
+                        "confidence": 0.96,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 4.0,
+                "__internal_dst_risk_exposure": 6.0,
+                "__internal_security_posture": 24.0
+            },
+            {
+                "consumer_filter_id": "5ce210a6755f0224eda468d8",
+                "provider_filter_id": "5ce34f39755f023fc9a468e2",
+                "consumer_filter_name": "tmitsue:Lab:Bugzilla",
+                "provider_filter_name": "Lab-Client",
+                "l4_params": [
+                    {
+                        "port": [
+                            55372,
+                            55372
+                        ],
+                        "proto": 6,
+                        "confidence": 0.8,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 6.0,
+                "__internal_dst_risk_exposure": 4.0,
+                "__internal_security_posture": 24.0
+            },
+            {
+                "consumer_filter_id": "5ce21096497d4f519e88fcbc",
+                "provider_filter_id": "5de5bfaa497d4f212eeac825",
+                "consumer_filter_name": "tmitsue:Lab:Shared Service",
+                "provider_filter_name": "Wordpress-Service",
+                "l4_params": [
+                    {
+                        "port": [
+                            80,
+                            80
+                        ],
+                        "proto": 6,
+                        "approved": true
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5cde5ce5755f027d7ea468dd",
+                "provider_filter_id": "5de5bfaa497d4f212eeac825",
+                "consumer_filter_name": "tmitsue",
+                "provider_filter_name": "Wordpress-Service",
+                "l4_params": [
+                    {
+                        "port": [
+                            80,
+                            80
+                        ],
+                        "proto": 6,
+                        "approved": true
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            }
+        ],
+        "catch_all_action": "DENY",
+        "inventory_filters": [
+            {
+                "id": "5ce34f39755f023fc9a468e2",
+                "filter_type": "UserInventoryFilter",
+                "name": "Lab-Client",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Client"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ce21068755f0278f6a468d9",
+                    "name": "tmitsue:Lab"
+                }
+            },
+            {
+                "id": "5d243e73755f020211a468d7",
+                "filter_type": "UserInventoryFilter",
+                "name": "Non-Production",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_env",
+                            "type": "eq",
+                            "value": "Non-Prod"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ce21068755f0278f6a468d9",
+                    "name": "tmitsue:Lab"
+                }
+            },
+            {
+                "id": "5d243e63755f021628a46931",
+                "filter_type": "UserInventoryFilter",
+                "name": "Production",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_env",
+                            "type": "eq",
+                            "value": "Prod"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ce21068755f0278f6a468d9",
+                    "name": "tmitsue:Lab"
+                }
+            },
+            {
+                "id": "5cde5ce5755f027d7ea468dd",
+                "filter_type": "AppScope",
+                "name": "tmitsue",
+                "query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                }
+            },
+            {
+                "id": "5ce210a6755f0224eda468d8",
+                "filter_type": "AppScope",
+                "name": "tmitsue:Lab:Bugzilla",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "field": "user_App",
+                            "type": "eq",
+                            "value": "Bugzilla"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ce21068755f0278f6a468d9",
+                    "name": "tmitsue:Lab"
+                }
+            },
+            {
+                "id": "5ce21096497d4f519e88fcbc",
+                "filter_type": "AppScope",
+                "name": "tmitsue:Lab:Shared Service",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Shared"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "10.0.0.1"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "10.0.0.2"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ce21068755f0278f6a468d9",
+                    "name": "tmitsue:Lab"
+                }
+            },
+            {
+                "id": "5de5bfaa497d4f212eeac825",
+                "filter_type": "UserInventoryFilter",
+                "name": "Wordpress-Service",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "user_orchestrator_system/namespace",
+                                    "type": "eq",
+                                    "value": "wordpress"
+                                },
+                                {
+                                    "field": "user_orchestrator_system/service_name",
+                                    "type": "eq",
+                                    "value": "wordpress"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5cde5ce5755f027d7ea468dd",
+                    "name": "tmitsue"
+                }
+            }
+        ],
+        "vrf": {
+            "id": 676768,
+            "name": "tmitsue",
+            "tenant_id": 676768,
+            "tenant_name": "676768"
+        }
+    }
+]
