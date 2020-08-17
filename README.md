@@ -206,6 +206,9 @@ Get Server Ports config to root scope. Return server ports config. Return a JSON
 
 tetcli #  policies upload
 Upload Server Ports config to root scope for ADM support. Need to put server port config file: "server_ports.txt" into the same folder "server_ports.txt". Sample txt file attached in the github repo.
+
+tetcli #  policies convert csv
+Convert one or more application workspace policies into xlsx format. Output files: policies.json and policies.xlsx
 ```
 
 
