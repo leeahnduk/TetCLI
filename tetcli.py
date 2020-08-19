@@ -16,6 +16,7 @@ from collections import defaultdict
 from tqdm import tqdm as progress
 import urllib3
 import xlsxwriter
+from openpyxl import Workbook
 
 
 
@@ -246,6 +247,7 @@ def get_inventory_cve(rc):
     #print (json.dumps(cve_hosts, indent=4))
 
     cve_list = []   # store host data with CVE info
+    print (BLINK + CRED + 'Processing vulnerabilities data ........ ' + CEND)
 
     for host in cve_hosts:
 
@@ -319,6 +321,7 @@ def get_inventory_cve(rc):
                 if (string != ""): cve_list_final.append(string)
 
     # specify csv file for exporting
+    export_xlsfile = 'cve_hosts_final.xlsx'
     export_csvfile = 'cve_hosts_final.csv'
     temp_csv = 'cve_hosts.csv'
 
@@ -341,8 +344,41 @@ def get_inventory_cve(rc):
              if any(field.strip() for field in row):
                  writer.writerow(row)
 
-    print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
+    workbook = xlsxwriter.Workbook(export_xlsfile)
+    bold = workbook.add_format({'bold': True})
+    worksheet = workbook.add_worksheet(name='CVE Report')
+    header_format = workbook.add_format()
+    header_format.set_bg_color('cyan')
+    header_format.set_bold()
+    header_format.set_text_wrap()
+    header_format.set_font_size(13)
+    header_format.set_font_color('black')
+    cell_format = workbook.add_format()
+    cell_format.set_text_wrap()
+    worksheet.set_row(0, None)
+    worksheet.write_row(0,0,csv_header,header_format)
+    i=1
+    firstline = True
+    with open('cve_hosts_final.csv', 'r') as f:
+        for row in csv.reader(f):
+            if firstline:    #skip first line
+                firstline = False
+                continue
+            worksheet.write_row(i,0,row)
+            i += 1
+    worksheet.set_column(0, 0, 15)
+    worksheet.set_column(1, 1, 15)
+    worksheet.set_column(2, 2, 15,cell_format)
+    worksheet.set_column(4, 4, 30,cell_format)
+    worksheet.set_column(5, 5, 30,cell_format)
+    i =6
+    while i < 16:
+        worksheet.set_column(i, i, 15)
+        i += 1
+    workbook.close()
+    print ('Writing csv file to %s with %d columns' % (export_xlsfile, len(csv_header)))
     os.remove(temp_csv)
+    os.remove(export_csvfile)
 
 
 def get_inventory_flow(rc):
@@ -376,6 +412,7 @@ def get_inventory_flow(rc):
     hosts_in_scope = get_inventory(rc, '/inventory/search', req_payload)
 
     talkative_list = []   # store host data with bytes
+    print (BLINK + CRED +'Processing flow data ........ '+ CEND)
 
     for host in hosts_in_scope:
         req_endpoint = '/inventory/' + str(host["ip"]) + '-' + str(host["vrf_id"] + '/stats?t0=' + str(t0) +'&t1='+str(t1)+'&td=day')
@@ -383,7 +420,7 @@ def get_inventory_flow(rc):
         
         results = rc.get(req_endpoint).json()
 
-        print ('Getting conversation data from ' + req_endpoint)
+        #print ('Getting conversation data from ' + req_endpoint)
         for x in results:
             stats_dict = {}
             stats_dict["Hostname"] = host["host_name"]
@@ -400,18 +437,34 @@ def get_inventory_flow(rc):
         talkative_list.append(stats_dict)
 
     # specify csv file for exporting
-    export_csvfile = 'stats_hosts.csv'
+    export_csvfile = 'stats_hosts.xlsx'
 
     # specify csv header fields
     csv_header = ["Hostname", "IP", "Timestamp", "OS", "OS Version", "MAC Address", "Received Bytes", "Transmited Bytes",
-                  "Total Flows", "Received Packets", "Transmited Packets",]
+                  "Total Flows", "Received Packets", "Transmited Packets"]
 
-    # Export file in csv format
-    with open(export_csvfile, 'w+') as f:
-        writer = csv.DictWriter(f, csv_header, quoting=csv.QUOTE_ALL)
-        writer.writeheader()
-        for row in talkative_list:
-            writer.writerow(row)
+    workbook = xlsxwriter.Workbook(export_csvfile)
+    bold = workbook.add_format({'bold': True})
+    worksheet = workbook.add_worksheet(name='Subnet Top talkers')
+    cell_format = workbook.add_format()
+    cell_format.set_bg_color('cyan')
+    cell_format.set_bold()
+    cell_format.set_font_color('black')
+    worksheet.set_row(0, None)
+    worksheet.write_row(0,0,csv_header,cell_format)
+    i=1
+    for row in talkative_list:
+        #print (row.values())
+        worksheet.write_row(i,0,row.values())
+        i+=1
+    worksheet.set_column(0, 0, 18)
+    worksheet.set_column(1, 1, 15)
+    worksheet.set_column(2, 2, 22)
+    i =3
+    while i < 12:
+        worksheet.set_column(i, i, 15)
+        i += 1
+    workbook.close()
 
     print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
 
@@ -468,18 +521,30 @@ def get_flow_topTalkers(rc):
             topN_list.append(topN_dict)
 
         # specify csv file for exporting
-        export_csvfile = 'topTalkerReport.csv'
+        export_csvfile = 'topTalkerReport.xlsx'
 
         # specify csv header fields
         csv_header = ["Source Address", metric]
 
         
-        # Export file in csv format
-        with open(export_csvfile, 'w+') as f:
-            writer = csv.DictWriter(f, csv_header, quoting=csv.QUOTE_ALL)
-            writer.writeheader()
-            for row in topN_list:
-                writer.writerow(row)
+        
+        workbook = xlsxwriter.Workbook(export_csvfile)
+        bold = workbook.add_format({'bold': True})
+        worksheet = workbook.add_worksheet(name='Top Source Address')
+        cell_format = workbook.add_format()
+        cell_format.set_bg_color('cyan')
+        cell_format.set_bold()
+        cell_format.set_font_color('black')
+        worksheet.set_row(0, None)
+        worksheet.write_row(0,0,csv_header,cell_format)
+        i=1
+        for row in topN_list:
+            #print (row.values())
+            worksheet.write_row(i,0,row.values())
+            i+=1
+        worksheet.set_column(0, 0, 30)
+        worksheet.set_column(1, 1, 30)
+        workbook.close()
 
         print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
 
@@ -536,18 +601,30 @@ def get_flow_topDest(rc):
             topN_list.append(topN_dict)
 
         # specify csv file for exporting
-        export_csvfile = 'topDestinationReport.csv'
+        export_csvfile = 'topDestinationReport.xlsx'
 
         # specify csv header fields
         csv_header = ["Destination Address", metric]
 
         
-        # Export file in csv format
-        with open(export_csvfile, 'w+') as f:
-            writer = csv.DictWriter(f, csv_header, quoting=csv.QUOTE_ALL)
-            writer.writeheader()
-            for row in topN_list:
-                writer.writerow(row)
+        
+        workbook = xlsxwriter.Workbook(export_csvfile)
+        bold = workbook.add_format({'bold': True})
+        worksheet = workbook.add_worksheet(name='Top Destination Address')
+        cell_format = workbook.add_format()
+        cell_format.set_bg_color('cyan')
+        cell_format.set_bold()
+        cell_format.set_font_color('black')
+        worksheet.set_row(0, None)
+        worksheet.write_row(0,0,csv_header,cell_format)
+        i=1
+        for row in topN_list:
+            #print (row.values())
+            worksheet.write_row(i,0,row.values())
+            i+=1
+        worksheet.set_column(0, 0, 30)
+        worksheet.set_column(1, 1, 30)
+        workbook.close()
 
         print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
 
@@ -604,19 +681,30 @@ def get_flow_topDestService(rc):
             topN_list.append(topN_dict)
 
         # specify csv file for exporting
-        export_csvfile = 'topDestinationPort.csv'
+        export_csvfile = 'topDestinationPort.xlsx'
 
         # specify csv header fields
         csv_header = ["Destination Service", metric]
 
         
-        # Export file in csv format
-        with open(export_csvfile, 'w+') as f:
-            writer = csv.DictWriter(f, csv_header, quoting=csv.QUOTE_ALL)
-            writer.writeheader()
-            for row in topN_list:
-                writer.writerow(row)
-
+        
+        workbook = xlsxwriter.Workbook(export_csvfile)
+        bold = workbook.add_format({'bold': True})
+        worksheet = workbook.add_worksheet(name='Top Destination Service')
+        cell_format = workbook.add_format()
+        cell_format.set_bg_color('cyan')
+        cell_format.set_bold()
+        cell_format.set_font_color('black')
+        worksheet.set_row(0, None)
+        worksheet.write_row(0,0,csv_header,cell_format)
+        i=1
+        for row in topN_list:
+            #print (row.values())
+            worksheet.write_row(i,0,row.values())
+            i+=1
+        worksheet.set_column(0, 0, 30)
+        worksheet.set_column(1, 1, 30)
+        workbook.close()
         print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
 
 def get_flow_topSrcService(rc):
@@ -662,7 +750,7 @@ def get_flow_topSrcService(rc):
         print(resp.text)
     else:
         topN = resp.json()
-        print (json.dumps(topN, indent=4))
+        #print (json.dumps(topN, indent=4))
         topN_list = []   # store TopN data
         print (json.dumps(topN[0]['result'], indent=4))
         for top in topN[0]['result']:
@@ -672,19 +760,29 @@ def get_flow_topSrcService(rc):
             topN_list.append(topN_dict)
 
         # specify csv file for exporting
-        export_csvfile = 'topSrcPort.csv'
+        export_csvfile = 'topSrcPort.xlsx'
 
         # specify csv header fields
         csv_header = ["Source Service", metric]
 
         
-        # Export file in csv format
-        with open(export_csvfile, 'w+') as f:
-            writer = csv.DictWriter(f, csv_header, quoting=csv.QUOTE_ALL)
-            writer.writeheader()
-            for row in topN_list:
-                writer.writerow(row)
-
+        workbook = xlsxwriter.Workbook(export_csvfile)
+        bold = workbook.add_format({'bold': True})
+        worksheet = workbook.add_worksheet(name='Top Source Service')
+        cell_format = workbook.add_format()
+        cell_format.set_bg_color('cyan')
+        cell_format.set_bold()
+        cell_format.set_font_color('black')
+        worksheet.set_row(0, None)
+        worksheet.write_row(0,0,csv_header,cell_format)
+        i=1
+        for row in topN_list:
+            #print (row.values())
+            worksheet.write_row(i,0,row.values())
+            i+=1
+        worksheet.set_column(0, 0, 30)
+        worksheet.set_column(1, 1, 30)
+        workbook.close()
         print ('Writing csv file to %s with %d columns' % (export_csvfile, len(csv_header)))
 
 
@@ -764,8 +862,12 @@ def convApps2xls(rc):
 
         if 'clusters' in app.keys():
             worksheet = workbook.add_worksheet(name='App Servers')
-            worksheet.set_row(0, None, bold)
-            worksheet.write_row(0,0,['Hostname','IP','Cluster Membership'])
+            cell_format = workbook.add_format()
+            cell_format.set_bg_color('cyan')
+            cell_format.set_bold()
+            cell_format.set_font_color('black')
+            worksheet.set_row(0, None)
+            worksheet.write_row(0,0,['Hostname','IP','Cluster Membership'],cell_format)
             i=1
             clusters = app['clusters']
             for cluster in clusters:
@@ -776,26 +878,43 @@ def convApps2xls(rc):
                     i+=1
             worksheet.set_column(0, 0, 30)
             worksheet.set_column(1, 1, 15)
+            worksheet.set_column(2, 2, 30)
 
         if 'inventory_filters' in app.keys():
             i=1
             worksheet = workbook.add_worksheet(name='External Groups')
-            worksheet.set_row(0, None, bold)
-            worksheet.write_row(0,0,['Inventory Filter Name','Filter Definition'])
+            cell_format = workbook.add_format()
+            cell_format.set_text_wrap()
+            header_format = workbook.add_format()
+            header_format.set_bg_color('cyan')
+            header_format.set_bold()
+            header_format.set_font_color('black')
+            worksheet.set_row(0, None)
+            worksheet.write_row(0,0,['Inventory Filter Name', 'IP Addresses', 'Filter Definition'],header_format)
             worksheet.set_column(0, 0, 30)
+            worksheet.set_column(1, 1, 60, cell_format)
+            worksheet.set_column(2, 2, 50, cell_format)
 
             filters = app['inventory_filters']
             for invfilter in filters:
-                worksheet.write_row(i,0,[invfilter['name'],filterToString(invfilter['query'])])
+                #print (json.dumps(invfilter, indent=4))
+                ipSet = resolveFilter(rc, invfilter)
+                #print (ipSet)
+                worksheet.write_row(i,0,[invfilter['name'], str(ipSet), filterToString(invfilter['query'])])
                 i+=1
 
         if 'default_policies' in app.keys():
             i=1
             worksheet = workbook.add_worksheet(name='Policies')
-            worksheet.set_row(0, None, bold)
-            worksheet.write_row(0,0,['Consumer Group','Provider Group','Services'])
+            header_format = workbook.add_format()
+            header_format.set_bg_color('cyan')
+            header_format.set_bold()
+            header_format.set_font_color('black')
+            worksheet.set_row(0, None)
+            worksheet.write_row(0,0,['Consumer Group','Provider Group','Services'],header_format)
             worksheet.set_column(0, 0, 30)
             worksheet.set_column(1, 1, 30)
+            worksheet.set_column(2, 2, 30)
 
             policies = app['default_policies']
             for policy in policies:
@@ -833,6 +952,115 @@ def convApps2xls(rc):
         workbook.close()
         print (app['name'].replace('/','-')+'.xlsx created for policies conversion to CSV')
 
+
+def resolveFilter(rc, filters):# return all IP and hosts for a specific filters
+    ipSet = []
+    body = json.dumps({'filter':filters['query']})
+   
+    resp = rc.post('/inventory/search',json_body=body)
+    if resp:
+        ips = resp.json()
+        for i in ips['results']:
+            ipSet.append(i['ip'])
+
+    return ipSet
+
+def GetInvFromApps(apps):
+    for app in apps[0]:
+        if 'inventory_filters' in app.keys():
+            return app['inventory_filters']
+        else: print("CRED + There's no inventory filters in the apps")
+
+def convApps2acl(rc):
+    AllApps = GetApps(rc)
+    scopes = GetApplicationScopes(rc)
+    apps = []
+    appIDs = selectTetApps(AllApps)
+    apps.append(downloadPolicies(rc, appIDs))
+    def_policies = getDefaultDetail(rc,str(appIDs[0]))
+
+    # Load in the IANA Protocols
+    protocols = {}
+    try: 
+        with open('protocol-numbers-1.csv') as protocol_file:
+            reader = csv.DictReader(protocol_file)
+            for row in reader:
+                protocols[row['Decimal']]=row
+    except IOError:
+        print('%% Could not load protocols file')
+        return
+    except ValueError:
+        print('Could not load improperly formatted protocols file')
+        return
+    
+    # Load in ASA known ports
+    ports = {}
+    try:
+        with open('asa_ports.csv') as protocol_file:
+            reader = csv.DictReader(protocol_file)
+            for row in reader:
+                ports[row['Port']]=row
+    except IOError:
+        print ('%% Could not load protocols file')
+        return
+    except ValueError:
+        print ('Could not load improperly formatted protocols file')
+        return
+
+    print('\nASA ACL Config\n---------------------------------------\n\n')
+    #Process nodes and output information to ASA Objects
+    file1 = open("ACL_config.txt","w")
+    for app in apps[0]:
+        if 'clusters' in app.keys():
+            clusters = GetClusters(rc,str(appIDs[0]))
+            for cluster in clusters:
+                print ("object network " + cluster['name'].replace(' ','_'))
+                file1.write("object network " + cluster['name'].replace(' ','_') + "\n")
+                ClustersipSet = resolveFilter(rc, cluster)
+                for ip in ClustersipSet:
+                    print ("  host " + ip)
+                    file1.write("  host " + ip + "\n")
+        if 'inventory_filters' in app.keys():
+            filters = GetInvFromApps(apps)
+            for invfilter in filters:
+                if invfilter['name'] != 'Default':
+                    print ("object network " + invfilter['name'].replace(' ','_'))
+                    file1.write("object network " + invfilter['name'].replace(' ','_')+ "\n")
+                    FiltersipSet = resolveFilter(rc, invfilter)
+                    for ip in FiltersipSet:
+                        print ("  host " + ip)
+                        file1.write("  host " + ip + "\n")
+
+    print ('!')
+    file1.write('! \n')
+
+    #Process policies and output information as ASA ACL Lines
+    for policy in def_policies:
+        for param in policy['l4_params']:
+            l4params = []
+            if param['proto'] == 1: l4params.append({'port_min': 'NA' ,'port_max': 'NA','proto':param['proto']})
+            else: l4params.append({'port_min':param['port'][0],'port_max':param['port'][1],'proto':param['proto']})
+ 
+        for rule in l4params:
+            if policy['consumer_filter_id'] != policy['provider_filter_id']:
+                if rule['proto'] == 1:
+                    print ("access-list ACL_IN extended permit " + protocols[str(rule['proto'])]['Keyword'] + ((" object " + policy['consumer_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + ((" object " + policy['provider_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any"))
+                    file1.write("access-list ACL_IN extended permit " + protocols[str(rule['proto'])]['Keyword'] + ((" object " + policy['consumer_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + ((" object " + policy['provider_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + '\n')               
+                elif (rule['proto'] == 6) or (rule['proto'] == 17):
+                    if rule['port_min'] == rule['port_max']:
+                        if (str(rule['port_min']) in ports.keys()) and (ports[str(rule['port_min'])]['Proto'] == protocols[str(rule['proto'])]['Keyword'] or ports[str(rule['port_min'])]['Proto'] == 'TCP, UDP'):
+                            port = ports[str(rule['port_min'])]['Name']
+                        else:
+                            port = rule['port_min']
+                        print ("access-list ACL_IN extended permit " + protocols[str(rule['proto'])]['Keyword'] + ((" object " + policy['consumer_filter']['name'].replace(' ','_')) if policy['consumer_filter']['name'] != 'Default' else " any") + ((" object " + policy['provider_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + " eq " + str(port))
+                        file1.write("access-list ACL_IN extended permit " + protocols[str(rule['proto'])]['Keyword'] + ((" object " + policy['consumer_filter']['name'].replace(' ','_')) if policy['consumer_filter']['name'] != 'Default' else " any") + ((" object " + policy['provider_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + " eq " + str(port) + "\n")
+                    else:
+                        print ("access-list ACL_IN extended permit " + protocols[str(rule['proto'])]['Keyword'] + ((" object " + policy['consumer_filter']['name'].replace(' ','_')) if policy['consumer_filter']['name'] != 'Default' else " any") + ((" object " + policy['provider_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + " range " + str(rule['port_min']) + "-" + str(rule['port_max']))
+                        file1.write("access-list ACL_IN extended permit " + protocols[str(rule['proto'])]['Keyword'] + ((" object " + policy['consumer_filter']['name'].replace(' ','_')) if policy['consumer_filter']['name'] != 'Default' else " any") + ((" object " + policy['provider_filter']['name'].replace(' ','_')) if policy['provider_filter']['name'] != 'Default' else " any") + " range " + str(rule['port_min']) + "-" + str(rule['port_max']) + "\n")
+    print ("access-list ACL_IN extended deny ip any any\n!\n\n")
+    file1.write("access-list ACL_IN extended deny ip any any\n!\n\n")
+    file1.close()
+    print (CYELLOW + "ACL Config File: ACL_config.txt created" + CEND)
 
 # =================================================================================
 # clean
@@ -3535,6 +3763,8 @@ def main():
         print (Cyan+ "Convert Policies into other formats, sub command: acl, csv  "+ CEND)
     if command == "policies convert csv" or command == "pol convert csv": 
         convApps2xls(rc)
+    if command == "policies convert acl" or command == "pol convert acl":
+        convApps2acl(rc)
 
     # filehash
     if command == "filehash h" or command =="filehash help" or command =="filehash" or command =="filehash ?": 
