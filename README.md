@@ -248,6 +248,10 @@ Upload Server Ports config to root scope for ADM support. Need to put server por
 
 tetcli #  policies convert csv
 Convert one or more application workspace policies into xlsx format. Output files: policies.json and policies.xlsx
+
+tetcli #  policies convert acl
+Convert one or more application workspace policies into acl format which can be used to configure ASA. Output files: policies.json and ACL_config.txt
+
 ```
 
 
