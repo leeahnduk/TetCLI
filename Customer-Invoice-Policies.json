@@ -1,0 +1,1040 @@
+[
+    {
+        "id": "5caaf105497d4f4d08c4f7d4",
+        "name": "Customer-Invoice-Policies",
+        "app_scope_id": "5caaed9e755f0252358fbf73",
+        "description": "Stable Policies",
+        "author": "Duc Le",
+        "primary": true,
+        "alternate_query_mode": true,
+        "enforced_version": 0,
+        "enforcement_enabled": false,
+        "created_at": 1554706693,
+        "latest_adm_version": 2,
+        "version": "v2",
+        "app_scope": {
+            "filter_type": "AppScope",
+            "id": "5caaed9e755f0252358fbf73",
+            "name": "anhdle:AUS:Siwapp Demo",
+            "description": "Siwapp Demo scope created by Ansible",
+            "short_name": "Siwapp Demo",
+            "priority": "065:001:006:Z",
+            "short_priority": 6,
+            "policy_priority": 11,
+            "query": {
+                "type": "and",
+                "filters": [
+                    {
+                        "field": "vrf_id",
+                        "type": "eq",
+                        "value": 676737
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "subnet",
+                                "value": "10.0.0.0/8"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "subnet",
+                                "value": "172.16.0.0/12"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "subnet",
+                                "value": "192.168.0.0/16"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "subnet",
+                                "value": "224.0.0.0/4"
+                            }
+                        ]
+                    },
+                    {
+                        "field": "user_Scope",
+                        "type": "eq",
+                        "value": "Siwapp Demo"
+                    }
+                ]
+            },
+            "short_query": {
+                "field": "user_Scope",
+                "type": "eq",
+                "value": "Siwapp Demo"
+            },
+            "dirty": false,
+            "dirty_short_query": null,
+            "vrf_id": 676737,
+            "parent_app_scope_id": "5ca1ceaa497d4f3cc2c4f7f6",
+            "root_app_scope_id": "5ca1a63f755f0217288fbfa0",
+            "child_app_scope_ids": [],
+            "created_at": 1554705822,
+            "updated_at": 1590463896,
+            "deleted_at": null
+        },
+        "absolute_policies": [],
+        "default_policies": [
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691c",
+                "provider_filter_id": "5ca1ceb0497d4f2586c4f846",
+                "consumer_filter_name": "Frontend-Proxy",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Domain Services",
+                "l4_params": [
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5ca1cead755f02221c8fbffa",
+                "provider_filter_id": "5d244da7755f024ff1da691c",
+                "consumer_filter_name": "anhdle:AUS:Users",
+                "provider_filter_name": "Frontend-Proxy",
+                "l4_params": [
+                    {
+                        "port": [
+                            80,
+                            80
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691c",
+                "provider_filter_id": "5ca1ceaf755f0205af8fbf8e",
+                "consumer_filter_name": "Frontend-Proxy",
+                "provider_filter_name": "anhdle:AUS:Shared Services:IPAM",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6920",
+                "provider_filter_id": "5ca1ceb1755f02221c8fbffe",
+                "consumer_filter_name": "Siwapp-Apps",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Tetration",
+                "l4_params": [
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5660,
+                            5660
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691f",
+                "provider_filter_id": "5ca1ceaf755f0205af8fbf8e",
+                "consumer_filter_name": "Backend-Proxy",
+                "provider_filter_name": "anhdle:AUS:Shared Services:IPAM",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691c",
+                "provider_filter_id": "5d244da7755f024ff1da6920",
+                "consumer_filter_name": "Frontend-Proxy",
+                "provider_filter_name": "Siwapp-Apps",
+                "l4_params": [
+                    {
+                        "port": [
+                            8081,
+                            8081
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691f",
+                "provider_filter_id": "5ca1ceb1755f02221c8fbffe",
+                "consumer_filter_name": "Backend-Proxy",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Tetration",
+                "l4_params": [
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5660,
+                            5660
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6921",
+                "provider_filter_id": "5ca1ceb0497d4f2586c4f846",
+                "consumer_filter_name": "Siwapp-SQL",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Domain Services",
+                "l4_params": [
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 1.0,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691f",
+                "provider_filter_id": "5d244da7755f024ff1da6921",
+                "consumer_filter_name": "Backend-Proxy",
+                "provider_filter_name": "Siwapp-SQL",
+                "l4_params": [
+                    {
+                        "port": [
+                            3306,
+                            3306
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6920",
+                "provider_filter_id": "5ca1ceaf755f0205af8fbf8e",
+                "consumer_filter_name": "Siwapp-Apps",
+                "provider_filter_name": "anhdle:AUS:Shared Services:IPAM",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6921",
+                "provider_filter_id": "5ca1ceaf755f0205af8fbf8e",
+                "consumer_filter_name": "Siwapp-SQL",
+                "provider_filter_name": "anhdle:AUS:Shared Services:IPAM",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6920",
+                "provider_filter_id": "5d244da7755f024ff1da691f",
+                "consumer_filter_name": "Siwapp-Apps",
+                "provider_filter_name": "Backend-Proxy",
+                "l4_params": [
+                    {
+                        "port": [
+                            3306,
+                            3306
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691f",
+                "provider_filter_id": "5ca1ceb0497d4f2586c4f846",
+                "consumer_filter_name": "Backend-Proxy",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Domain Services",
+                "l4_params": [
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6921",
+                "provider_filter_id": "5d244da7755f024ff1da6921",
+                "consumer_filter_name": "Siwapp-SQL",
+                "provider_filter_name": "Siwapp-SQL",
+                "l4_params": [
+                    {
+                        "port": [
+                            4567,
+                            4567
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6921",
+                "provider_filter_id": "5ca1ceb1755f02221c8fbffe",
+                "consumer_filter_name": "Siwapp-SQL",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Tetration",
+                "l4_params": [
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5660,
+                            5660
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da691c",
+                "provider_filter_id": "5ca1ceb1755f02221c8fbffe",
+                "consumer_filter_name": "Frontend-Proxy",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Tetration",
+                "l4_params": [
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5660,
+                            5660
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            },
+            {
+                "consumer_filter_id": "5d244da7755f024ff1da6920",
+                "provider_filter_id": "5ca1ceb0497d4f2586c4f846",
+                "consumer_filter_name": "Siwapp-Apps",
+                "provider_filter_name": "anhdle:AUS:Shared Services:Domain Services",
+                "l4_params": [
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 1.0,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100
+            }
+        ],
+        "catch_all_action": "DENY",
+        "inventory_filters": [
+            {
+                "id": "5ca1ceb0497d4f2586c4f846",
+                "filter_type": "AppScope",
+                "name": "anhdle:AUS:Shared Services:Domain Services",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676737
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "10.0.0.0/8"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "172.16.0.0/12"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "192.168.0.0/16"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "224.0.0.0/4"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "user_Scope",
+                            "type": "eq",
+                            "value": "Shared Services"
+                        },
+                        {
+                            "field": "user_ServiceScope",
+                            "type": "eq",
+                            "value": "Domain Services"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ca1ceac497d4f3cc2c4f7fa",
+                    "name": "anhdle:AUS:Shared Services"
+                }
+            },
+            {
+                "id": "5ca1ceaf755f0205af8fbf8e",
+                "filter_type": "AppScope",
+                "name": "anhdle:AUS:Shared Services:IPAM",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676737
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "10.0.0.0/8"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "172.16.0.0/12"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "192.168.0.0/16"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "224.0.0.0/4"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "user_Scope",
+                            "type": "eq",
+                            "value": "Shared Services"
+                        },
+                        {
+                            "field": "user_ServiceScope",
+                            "type": "eq",
+                            "value": "IPAM"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ca1ceac497d4f3cc2c4f7fa",
+                    "name": "anhdle:AUS:Shared Services"
+                }
+            },
+            {
+                "id": "5ca1ceb1755f02221c8fbffe",
+                "filter_type": "AppScope",
+                "name": "anhdle:AUS:Shared Services:Tetration",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676737
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "10.0.0.0/8"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "172.16.0.0/12"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "192.168.0.0/16"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "224.0.0.0/4"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "user_Scope",
+                            "type": "eq",
+                            "value": "Shared Services"
+                        },
+                        {
+                            "field": "user_ServiceScope",
+                            "type": "eq",
+                            "value": "Tetration"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ca1ceac497d4f3cc2c4f7fa",
+                    "name": "anhdle:AUS:Shared Services"
+                }
+            },
+            {
+                "id": "5ca1cead755f02221c8fbffa",
+                "filter_type": "AppScope",
+                "name": "anhdle:AUS:Users",
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676737
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "10.0.0.0/8"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "172.16.0.0/12"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "192.168.0.0/16"
+                                },
+                                {
+                                    "field": "ip",
+                                    "type": "subnet",
+                                    "value": "224.0.0.0/4"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "user_Scope",
+                            "type": "eq",
+                            "value": "Users"
+                        }
+                    ]
+                },
+                "parent_app_scope": {
+                    "id": "5ca1ceaa497d4f3cc2c4f7f6",
+                    "name": "anhdle:AUS"
+                }
+            }
+        ],
+        "clusters": [
+            {
+                "id": "5d244da7755f024ff1da691f",
+                "consistent_uuid": "5cad414b755f0261076c6355",
+                "name": "Backend-Proxy",
+                "approved": true,
+                "nodes": [
+                    {
+                        "ip": "172.17.16.233",
+                        "name": "172-17-16-233"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.233"
+                            }
+                        ]
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "172-17-16-233"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "contains",
+                        "value": "172-17-16-233"
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "eq",
+                        "value": "siwapp-haproxy-db"
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "contains",
+                        "value": "siwapp-haproxy-db"
+                    }
+                ]
+            },
+            {
+                "id": "5d244da7755f024ff1da691c",
+                "consistent_uuid": "5cad414b755f0261076c6352",
+                "name": "Frontend-Proxy",
+                "approved": true,
+                "nodes": [
+                    {
+                        "ip": "172.17.16.236",
+                        "name": "172-17-16-236"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.236"
+                            }
+                        ]
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "contains",
+                        "value": "siwapp-haproxy-app"
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "eq",
+                        "value": "siwapp-haproxy-app"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "eq",
+                        "value": "172-17-16-236"
+                    },
+                    {
+                        "field": "host_name",
+                        "type": "contains",
+                        "value": "172-17-16-236"
+                    }
+                ]
+            },
+            {
+                "id": "5d244da7755f024ff1da6920",
+                "consistent_uuid": "5cad414c755f0261076c6356",
+                "name": "Siwapp-Apps",
+                "approved": true,
+                "nodes": [
+                    {
+                        "ip": "172.17.16.235",
+                        "name": "172-17-16-235"
+                    },
+                    {
+                        "ip": "172.17.16.237",
+                        "name": "172-17-16-237"
+                    },
+                    {
+                        "ip": "172.17.16.238",
+                        "name": "172-17-16-238"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.235"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.237"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.238"
+                            }
+                        ]
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "contains",
+                        "value": "siwapp-app"
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "eq",
+                        "value": "siwapp-app"
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "eq",
+                                "value": "siwapp-app"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-235"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "contains",
+                                "value": "siwapp-app"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-235"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "contains",
+                                "value": "siwapp-app"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-235"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-237"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-235"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-237"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-238"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "eq",
+                                "value": "siwapp-app"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-235"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-237"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5d244da7755f024ff1da6921",
+                "consistent_uuid": "5cad414c755f0261076c6357",
+                "name": "Siwapp-SQL",
+                "approved": true,
+                "nodes": [
+                    {
+                        "ip": "172.17.16.232",
+                        "name": "172-17-16-232"
+                    },
+                    {
+                        "ip": "172.17.16.239",
+                        "name": "172-17-16-239"
+                    },
+                    {
+                        "ip": "172.17.16.240",
+                        "name": "172-17-16-240"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.232"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.239"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "172.17.16.240"
+                            }
+                        ]
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "contains",
+                        "value": "siwapp-db"
+                    },
+                    {
+                        "field": "user_Function",
+                        "type": "eq",
+                        "value": "siwapp-db"
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "eq",
+                                "value": "siwapp-db"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-240"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "contains",
+                                "value": "siwapp-db"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-240"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "contains",
+                                "value": "siwapp-db"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-232"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-240"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "user_Function",
+                                "type": "eq",
+                                "value": "siwapp-db"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-232"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-240"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-232"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-239"
+                            },
+                            {
+                                "field": "host_name",
+                                "type": "eq",
+                                "value": "172-17-16-240"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "vrf": {
+            "id": 676737,
+            "name": "anhdle",
+            "tenant_id": 676737,
+            "tenant_name": "676737"
+        }
+    }
+]

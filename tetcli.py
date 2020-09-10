@@ -1043,7 +1043,7 @@ def GetInvFromApps(apps):
             return app['inventory_filters']
         else: print("CRED + There's no inventory filters in the apps")
 
-def convApps2acl(rc):
+def convApps2asa(rc):
     AllApps = GetApps(rc)
     scopes = GetApplicationScopes(rc)
     apps = []
@@ -1133,6 +1133,108 @@ def convApps2acl(rc):
     file1.write("access-list ACL_IN extended deny ip any any\n!\n\n")
     file1.close()
     print (CYELLOW + "ACL Config File: ACL_config.txt created" + CEND)
+
+
+def convApps2n9k(rc):
+    AllApps = GetApps(rc)
+    scopes = GetApplicationScopes(rc)
+    apps = []
+    appIDs = selectTetApps(AllApps)
+    apps.append(downloadPolicies(rc, appIDs))
+    def_policies = getDefaultDetail(rc,str(appIDs[0]))
+    #print ("Default Policies: \n" +json.dumps(def_policies, indent=4))
+    abs_policies = getAbsoluteDetail(rc,str(appIDs[0]))
+    #print ("Absolute Policies: \n" + json.dumps(abs_policies, indent=4))
+
+
+    # Load in the IANA Protocols
+    protocols = {}
+    try: 
+        with open('protocol-numbers-1.csv') as protocol_file:
+            reader = csv.DictReader(protocol_file)
+            for row in reader:
+                protocols[row['Decimal']]=row
+    except IOError:
+        print('%% Could not load protocols file')
+        return
+    except ValueError:
+        print('Could not load improperly formatted protocols file')
+        return
+    
+    # Load in N9k known ports
+    ports = {}
+    print('\nN9k ACL Config\n---------------------------------------\n\n')
+    #Process nodes and output information to N9k Objects
+    file1 = open("ACL_config.txt","w")
+    print ('ip access-list tet-acl')
+    file1.write('ip access-list tet-acl \n')
+   
+    #Process policies and output information as N9k ACL Lines
+    for policy in def_policies:
+        #print ("Policy: \n" + json.dumps(policy, indent=4))
+        for param in policy['l4_params']:
+            #print ("L4 Param: \n" + json.dumps(param, indent=4))
+            l4params = []
+            if param['proto'] == 1: l4params.append({'port_min': 'NA' ,'port_max': 'NA','proto':param['proto']})
+            else: l4params.append({'port_min':param['port'][0],'port_max':param['port'][1],'proto':param['proto']})
+            #if policy['consumer_filter']['name'] == 'Default' and policy['provider_filter']['name'] != 'Default':
+        #print ("L4 Params: \n" + json.dumps(l4params, indent=4)) 
+        for rule in l4params:
+            if policy['consumer_filter_id'] != policy['provider_filter_id']:
+                if rule['proto'] == 1:
+                    for app in apps[0]:
+                        if 'clusters' in app.keys():
+                            clusters = GetClusters(rc,str(appIDs[0]))
+                            for cluster in clusters:
+                                if policy['provider_filter']['name'] == cluster['name']:
+                                    ProvipSet = resolveFilter(rc, cluster)
+                                if policy['consumer_filter']['name'] == cluster['name']:
+                                    ConsipSet = resolveFilter(rc, cluster)
+                        if 'inventory_filters' in app.keys():
+                            filters = GetInvFromApps(apps)
+                            for invfilter in filters:
+                                if invfilter['name'] != 'Default':
+                                    if policy['provider_filter']['name'] == invfilter['name']:
+                                        ProvipSet = resolveFilter(rc, invfilter)
+                                    if policy['consumer_filter']['name'] == invfilter['name']:
+                                        ConsipSet = resolveFilter(rc, invfilter)
+                        for a in ConsipSet:
+                            for b in ProvipSet: 
+                                if a != b:
+                                    print ("\t permit " + protocols[str(rule['proto'])]['Keyword'] + " host " + (a if policy['provider_filter']['name'] != 'Default' else " any") + " host " + (b if policy['provider_filter']['name'] != 'Default' else " any"))
+                                    file1.write("\t permit " + protocols[str(rule['proto'])]['Keyword'] + " host " + (a if policy['provider_filter']['name'] != 'Default' else " any") + " host " + (b if policy['provider_filter']['name'] != 'Default' else " any\n"))           
+                elif (rule['proto'] == 6) or (rule['proto'] == 17):
+                    for app in apps[0]:
+                        if 'clusters' in app.keys():
+                            clusters = GetClusters(rc,str(appIDs[0]))
+                            for cluster in clusters:
+                                if policy['provider_filter']['name'] == cluster['name']:
+                                    ProvipSet = resolveFilter(rc, cluster)
+                                if policy['consumer_filter']['name'] == cluster['name']:
+                                    ConsipSet = resolveFilter(rc, cluster)
+                        if 'inventory_filters' in app.keys():
+                            filters = GetInvFromApps(apps)
+                            for invfilter in filters:
+                                if invfilter['name'] != 'Default':
+                                    if policy['provider_filter']['name'] == invfilter['name']:
+                                        ProvipSet = resolveFilter(rc, invfilter)
+                                    if policy['consumer_filter']['name'] == invfilter['name']:
+                                        ConsipSet = resolveFilter(rc, invfilter)
+                        for a in ConsipSet:
+                            for b in ProvipSet: 
+                                if a != b:
+                                    if rule['port_min'] == rule['port_max']:
+                                        port = rule['port_min']
+                                        print ("\t permit " + protocols[str(rule['proto'])]['Keyword'] + " host " + (a if policy['consumer_filter']['name'] != 'Default' else " any") + " host " + (b if policy['provider_filter']['name'] != 'Default' else " any") + " eq " + str(port))
+                                        file1.write("\t permit " + protocols[str(rule['proto'])]['Keyword'] + " host " + (a if policy['consumer_filter']['name'] != 'Default' else " any") + " host " + (b if policy['provider_filter']['name'] != 'Default' else " any") + " eq " + str(port) + "\n")
+                                    else:
+                                        print ("\t permit " + protocols[str(rule['proto'])]['Keyword'] + " host " + (a if policy['consumer_filter']['name'] != 'Default' else " any") + " host " + (b if policy['provider_filter']['name'] != 'Default' else " any") + " range " + str(rule['port_min']) + "-" + str(rule['port_max']))
+                                        file1.write("\t permit " + protocols[str(rule['proto'])]['Keyword'] + " host " + (a if policy['consumer_filter']['name'] != 'Default' else " any") + " host " + (b if policy['provider_filter']['name'] != 'Default' else " any") + " range " + str(rule['port_min']) + "-" + str(rule['port_max']) + "\n")
+    print ("\t deny ip any any\n!\n\n")
+    file1.write("\t deny ip any any\n!\n\n")
+    file1.close()
+    print (CYELLOW + "ACL Config File: ACL_config.txt created" + CEND)
+
 
 # =================================================================================
 # clean
@@ -3832,11 +3934,13 @@ def main():
 
     # Policies convert
     if command == "policies convert h" or command =="policies convert help" or command =="policies convert ?" or command == "pol convert h" or command =="pol convert help" or command =="pol convert ?": 
-        print (Cyan+ "Convert Policies into other formats, sub command: acl, csv  "+ CEND)
+        print (Cyan+ "Convert Policies into other formats, sub command: asa, csv, n9k  "+ CEND)
     if command == "policies convert csv" or command == "pol convert csv": 
         convApps2xls(rc)
-    if command == "policies convert acl" or command == "pol convert acl":
-        convApps2acl(rc)
+    if command == "policies convert asa" or command == "pol convert asa":
+        convApps2asa(rc)
+    if command == "policies convert n9k" or command == "pol convert n9k":
+        convApps2n9k(rc)
 
     # filehash
     if command == "filehash h" or command =="filehash help" or command =="filehash" or command =="filehash ?": 
