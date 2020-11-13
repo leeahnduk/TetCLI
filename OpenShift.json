@@ -1,0 +1,1836 @@
+[
+    {
+        "id": "5f9f6a86497d4f0e6fbcc0dc",
+        "name": "OpenShift",
+        "app_scope_id": "5f922adf497d4f0e6fbcb21b",
+        "description": null,
+        "author": "Site Admin",
+        "primary": false,
+        "alternate_query_mode": true,
+        "enforced_version": null,
+        "enforcement_enabled": false,
+        "created_at": 1604283014,
+        "latest_adm_version": 1,
+        "version": "v1",
+        "app_scope": {
+            "filter_type": "AppScope",
+            "id": "5f922adf497d4f0e6fbcb21b",
+            "name": "ASEAN_DMZ:OpenShift",
+            "description": null,
+            "short_name": "OpenShift",
+            "priority": "004:001:Z",
+            "short_priority": 1,
+            "policy_priority": 2,
+            "query": {
+                "type": "and",
+                "filters": [
+                    {
+                        "field": "vrf_id",
+                        "type": "eq",
+                        "value": 676768
+                    },
+                    {
+                        "field": "user_orchestrator_system/cluster_name",
+                        "type": "contains",
+                        "value": "DMZ-OpenShift3"
+                    }
+                ]
+            },
+            "short_query": {
+                "type": "contains",
+                "field": "user_orchestrator_system/cluster_name",
+                "value": "DMZ-OpenShift3"
+            },
+            "dirty": false,
+            "dirty_short_query": null,
+            "vrf_id": 676768,
+            "parent_app_scope_id": "5f6aa074497d4f18b5a8b1fb",
+            "root_app_scope_id": "5f6aa074497d4f18b5a8b1fb",
+            "child_app_scope_ids": [],
+            "created_at": 1603414751,
+            "updated_at": 1603414751,
+            "deleted_at": null
+        },
+        "absolute_policies": [],
+        "default_policies": [
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a06",
+                "provider_filter_id": "5f9f6b39497d4f4931991a02",
+                "consumer_filter_name": "os3-* [2]",
+                "provider_filter_name": "os3-w2",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 1.0,
+                "__internal_security_posture": 2.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a04",
+                "provider_filter_id": "5f9f6b39497d4f4931991a0b",
+                "consumer_filter_name": "10.227.0.166",
+                "provider_filter_name": "os3-w*",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.97,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 1.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 2.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a03",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "10.227.0.1*",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 6.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a0b",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "os3-w*",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 6.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "ASEAN_DMZ",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 0.86,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.99,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2049,
+                            2049
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5660,
+                            5660
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 390.0,
+                "__internal_security_posture": 1170.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f4931991a0c",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "10.227.0.* [2]",
+                "l4_params": [
+                    {
+                        "port": [
+                            6443,
+                            6443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 6.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a06",
+                "provider_filter_id": "5f9f6b39497d4f4931991a08",
+                "consumer_filter_name": "os3-* [2]",
+                "provider_filter_name": "os3-w3",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 1.0,
+                "__internal_security_posture": 2.0
+            },
+            {
+                "consumer_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "provider_filter_id": "5f9f6b39497d4f4931991a06",
+                "consumer_filter_name": "ASEAN_DMZ",
+                "provider_filter_name": "os3-* [2]",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 390.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 780.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a02",
+                "provider_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "consumer_filter_name": "os3-w2",
+                "provider_filter_name": "ASEAN_DMZ",
+                "l4_params": [
+                    {
+                        "port": [
+                            67,
+                            67
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            111,
+                            111
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            138,
+                            138
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            161,
+                            161
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            445,
+                            445
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            500,
+                            500
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            514,
+                            514
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            547,
+                            547
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            853,
+                            853
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1720,
+                            1720
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1812,
+                            1813
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2042,
+                            2043
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2049,
+                            2049
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2979,
+                            2979
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3020,
+                            3020
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3784,
+                            3785
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3799,
+                            3799
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            4342,
+                            4342
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            4740,
+                            4740
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            4789,
+                            4789
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5061,
+                            5061
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            10161,
+                            10161
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8009,
+                            8009
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 1.0,
+                "__internal_dst_risk_exposure": 390.0,
+                "__internal_security_posture": 390.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a07",
+                "provider_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "consumer_filter_name": "os3-w1",
+                "provider_filter_name": "ASEAN_DMZ",
+                "l4_params": [
+                    {
+                        "port": [
+                            67,
+                            67
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8009,
+                            8009
+                        ],
+                        "proto": 6,
+                        "confidence": 0.83,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 1.0,
+                "__internal_dst_risk_exposure": 390.0,
+                "__internal_security_posture": 390.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a0d",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "10.227.0.* [3]",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 1.0,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 9.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 27.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a08",
+                "provider_filter_id": "5f9f6b39497d4f4931991a06",
+                "consumer_filter_name": "os3-w3",
+                "provider_filter_name": "os3-* [2]",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 1.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 2.0
+            },
+            {
+                "consumer_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "provider_filter_id": "5f9f6b39497d4f4931991a0b",
+                "consumer_filter_name": "ASEAN_DMZ",
+                "provider_filter_name": "os3-w*",
+                "l4_params": [
+                    {
+                        "proto": 1,
+                        "confidence": 0.82,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 390.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 780.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f4931991a09",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "10.227.0.*",
+                "l4_params": [
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 9.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a08",
+                "provider_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "consumer_filter_name": "os3-w3",
+                "provider_filter_name": "ASEAN_DMZ",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8009,
+                            8009
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 1.0,
+                "__internal_dst_risk_exposure": 390.0,
+                "__internal_security_posture": 390.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f4931991a0a",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "10.227.0.8",
+                "l4_params": [
+                    {
+                        "port": [
+                            9090,
+                            9090
+                        ],
+                        "proto": 6,
+                        "confidence": 0.97,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 1.0,
+                "__internal_security_posture": 3.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f4931991a05",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "10.227.0.145",
+                "l4_params": [
+                    {
+                        "port": [
+                            5000,
+                            5000
+                        ],
+                        "proto": 6,
+                        "confidence": 0.97,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 1.0,
+                "__internal_security_posture": 3.0
+            },
+            {
+                "consumer_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "provider_filter_id": "5f9f6b39497d4f4931991a08",
+                "consumer_filter_name": "ASEAN_DMZ",
+                "provider_filter_name": "os3-w3",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 390.0,
+                "__internal_dst_risk_exposure": 1.0,
+                "__internal_security_posture": 390.0
+            },
+            {
+                "consumer_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "provider_filter_id": "5f9f6b39497d4f4931991a02",
+                "consumer_filter_name": "ASEAN_DMZ",
+                "provider_filter_name": "os3-w2",
+                "l4_params": [
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 390.0,
+                "__internal_dst_risk_exposure": 1.0,
+                "__internal_security_posture": 390.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 9.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a0b",
+                "provider_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "consumer_filter_name": "os3-w*",
+                "provider_filter_name": "ASEAN_DMZ",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 0.86,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            443,
+                            443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2049,
+                            2049
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5660,
+                            5660
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 390.0,
+                "__internal_security_posture": 780.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a0b",
+                "provider_filter_id": "5f9f6b39497d4f4931991a0d",
+                "consumer_filter_name": "os3-w*",
+                "provider_filter_name": "10.227.0.* [3]",
+                "l4_params": [
+                    {
+                        "port": [
+                            1936,
+                            1936
+                        ],
+                        "proto": 6,
+                        "confidence": 0.97,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 9.0,
+                "__internal_security_posture": 18.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f4931991a0b",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "os3-w*",
+                "l4_params": [
+                    {
+                        "port": [
+                            10250,
+                            10250
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 6.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a0c",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "10.227.0.* [2]",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.98,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2379,
+                            2379
+                        ],
+                        "proto": 6,
+                        "confidence": 0.97,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 6.0
+            },
+            {
+                "consumer_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "ASEAN_DMZ",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "proto": 1,
+                        "confidence": 0.8,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.97,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 390.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 1170.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a06",
+                "provider_filter_id": "5f6aa074497d4f18b5a8b1fb",
+                "consumer_filter_name": "os3-* [2]",
+                "provider_filter_name": "ASEAN_DMZ",
+                "l4_params": [
+                    {
+                        "port": [
+                            8009,
+                            8009
+                        ],
+                        "proto": 6,
+                        "confidence": 0.83,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            53,
+                            53
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            67,
+                            67
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            69,
+                            69
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            88,
+                            88
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            111,
+                            111
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            123,
+                            123
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            137,
+                            138
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            143,
+                            143
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            161,
+                            162
+                        ],
+                        "proto": 17,
+                        "confidence": 0.97,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            389,
+                            389
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            445,
+                            445
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            500,
+                            500
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            514,
+                            514
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            547,
+                            547
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            646,
+                            646
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            691,
+                            691
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            853,
+                            853
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1300,
+                            1300
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1720,
+                            1720
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1801,
+                            1801
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1812,
+                            1813
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            1985,
+                            1985
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2029,
+                            2029
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2042,
+                            2043
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2049,
+                            2049
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            2979,
+                            2979
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3020,
+                            3020
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3306,
+                            3306
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3389,
+                            3389
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3407,
+                            3407
+                        ],
+                        "proto": 17,
+                        "confidence": 0.95,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3784,
+                            3785
+                        ],
+                        "proto": 17,
+                        "confidence": 0.97,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            3799,
+                            3799
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            4341,
+                            4342
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            4739,
+                            4740
+                        ],
+                        "proto": 17,
+                        "confidence": 0.97,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            4789,
+                            4789
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5060,
+                            5061
+                        ],
+                        "proto": 17,
+                        "confidence": 0.97,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5353,
+                            5353
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            5640,
+                            5641
+                        ],
+                        "proto": 17,
+                        "confidence": 0.97,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            8472,
+                            8472
+                        ],
+                        "proto": 17,
+                        "confidence": 0.89,
+                        "approved": false
+                    },
+                    {
+                        "port": [
+                            10161,
+                            10162
+                        ],
+                        "proto": 17,
+                        "confidence": 0.96,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 2.0,
+                "__internal_dst_risk_exposure": 390.0,
+                "__internal_security_posture": 1560.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f49319919ff",
+                "provider_filter_id": "5f9f6b39497d4f4931991a03",
+                "consumer_filter_name": "os3-*",
+                "provider_filter_name": "10.227.0.1*",
+                "l4_params": [
+                    {
+                        "port": [
+                            1338,
+                            1338
+                        ],
+                        "proto": 6,
+                        "confidence": 0.97,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 2.0,
+                "__internal_security_posture": 6.0
+            },
+            {
+                "consumer_filter_id": "5f9f6b39497d4f4931991a09",
+                "provider_filter_id": "5f9f6b39497d4f49319919ff",
+                "consumer_filter_name": "10.227.0.*",
+                "provider_filter_name": "os3-*",
+                "l4_params": [
+                    {
+                        "port": [
+                            8443,
+                            8443
+                        ],
+                        "proto": 6,
+                        "confidence": 0.98,
+                        "approved": false
+                    }
+                ],
+                "action": "ALLOW",
+                "priority": 100,
+                "__internal_src_risk_exposure": 3.0,
+                "__internal_dst_risk_exposure": 3.0,
+                "__internal_security_posture": 9.0
+            }
+        ],
+        "catch_all_action": "DENY",
+        "clusters": [
+            {
+                "id": "5f9f6b39497d4f4931991a09",
+                "consistent_uuid": "5f9f6afa46b08e479f25831d",
+                "name": "10.227.0.*",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.3",
+                        "name": "10.227.0.3"
+                    },
+                    {
+                        "ip": "10.227.0.6",
+                        "name": "10.227.0.6"
+                    },
+                    {
+                        "ip": "10.227.0.7",
+                        "name": "10.227.0.7"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.3"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.6"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.7"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a0c",
+                "consistent_uuid": "5f9f6afa46b08e479f258320",
+                "name": "10.227.0.* [2]",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.4",
+                        "name": "10.227.0.4"
+                    },
+                    {
+                        "ip": "10.227.0.5",
+                        "name": "10.227.0.5"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.4"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.5"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a0d",
+                "consistent_uuid": "5f9f6afa46b08e479f258321",
+                "name": "10.227.0.* [3]",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.131",
+                        "name": "10.227.0.131"
+                    },
+                    {
+                        "ip": "10.227.0.133",
+                        "name": "10.227.0.133"
+                    },
+                    {
+                        "ip": "10.227.0.134",
+                        "name": "10.227.0.134"
+                    },
+                    {
+                        "ip": "10.227.0.140",
+                        "name": "10.227.0.140"
+                    },
+                    {
+                        "ip": "10.227.0.141",
+                        "name": "10.227.0.141"
+                    },
+                    {
+                        "ip": "10.227.0.142",
+                        "name": "10.227.0.142"
+                    },
+                    {
+                        "ip": "10.227.0.146",
+                        "name": "10.227.0.146"
+                    },
+                    {
+                        "ip": "10.227.0.147",
+                        "name": "10.227.0.147"
+                    },
+                    {
+                        "ip": "10.227.0.66",
+                        "name": "10.227.0.66"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.66"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.131"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.133"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.134"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.140"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.141"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.142"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.146"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.147"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a03",
+                "consistent_uuid": "5f9f6afa46b08e479f258317",
+                "name": "10.227.0.1*",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.138",
+                        "name": "10.227.0.138"
+                    },
+                    {
+                        "ip": "10.227.0.144",
+                        "name": "10.227.0.144"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.138"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.144"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a05",
+                "consistent_uuid": "5f9f6afa46b08e479f258319",
+                "name": "10.227.0.145",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.145",
+                        "name": "10.227.0.145"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.145"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a04",
+                "consistent_uuid": "5f9f6afa46b08e479f258318",
+                "name": "10.227.0.166",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.166",
+                        "name": "10.227.0.166"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.166"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a0a",
+                "consistent_uuid": "5f9f6afa46b08e479f25831e",
+                "name": "10.227.0.8",
+                "nodes": [
+                    {
+                        "ip": "10.227.0.8",
+                        "name": "10.227.0.8"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.227.0.8"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f49319919ff",
+                "consistent_uuid": "5f9f6afa46b08e479f258315",
+                "name": "os3-*",
+                "nodes": [
+                    {
+                        "ip": "10.9.8.11",
+                        "name": "os3-m1"
+                    },
+                    {
+                        "ip": "10.9.8.21",
+                        "name": "os3-w1"
+                    },
+                    {
+                        "ip": "10.9.8.22",
+                        "name": "os3-w2"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.9.8.11"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.9.8.21"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.9.8.22"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a06",
+                "consistent_uuid": "5f9f6afa46b08e479f25831a",
+                "name": "os3-* [2]",
+                "nodes": [
+                    {
+                        "ip": "10.0.240.92",
+                        "name": "os3-m1"
+                    },
+                    {
+                        "ip": "10.0.48.98",
+                        "name": "os3-w4"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.0.48.98"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.0.240.92"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a0b",
+                "consistent_uuid": "5f9f6afa46b08e479f25831f",
+                "name": "os3-w*",
+                "nodes": [
+                    {
+                        "ip": "10.9.8.23",
+                        "name": "os3-w3"
+                    },
+                    {
+                        "ip": "10.9.8.24",
+                        "name": "os3-w4"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.9.8.23"
+                            },
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.9.8.24"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a07",
+                "consistent_uuid": "5f9f6afa46b08e479f25831b",
+                "name": "os3-w1",
+                "nodes": [
+                    {
+                        "ip": "10.0.240.88",
+                        "name": "os3-w1"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.0.240.88"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a02",
+                "consistent_uuid": "5f9f6afa46b08e479f258316",
+                "name": "os3-w2",
+                "nodes": [
+                    {
+                        "ip": "10.0.48.97",
+                        "name": "os3-w2"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.0.48.97"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "5f9f6b39497d4f4931991a08",
+                "consistent_uuid": "5f9f6afa46b08e479f25831c",
+                "name": "os3-w3",
+                "nodes": [
+                    {
+                        "ip": "10.0.48.102",
+                        "name": "os3-w3"
+                    }
+                ],
+                "external": false,
+                "cluster_queries": [
+                    {
+                        "type": "or",
+                        "filters": [
+                            {
+                                "field": "ip",
+                                "type": "eq",
+                                "value": "10.0.48.102"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "inventory_filters": [
+            {
+                "id": "5f6aa074497d4f18b5a8b1fb",
+                "filter_type": "AppScope",
+                "name": "ASEAN_DMZ",
+                "query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                }
+            }
+        ],
+        "vrf": {
+            "id": 676768,
+            "name": "ASEAN_DMZ",
+            "tenant_id": 676768,
+            "tenant_name": "676768"
+        }
+    }
+]

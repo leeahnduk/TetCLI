@@ -3491,6 +3491,7 @@ def remoteVRF(rc):
 
 def main():
     print (BLINK + BOLD+ CGREEN + "Welcome to Tetration CLI !!!" + CEND)
+    print (BOLD+ CGREEN + UNDERLINE +"Feedback can send to: anhdle@cisco.com"+ CEND)
     print (BOLD+ Cyan+ UNDERLINE + ITALIC +"Object support:"+ CEND)
     print (BOLD+ CYELLOW +"- agents \n- inventories \n- vrfs \n- applications \n- users \n- roles \n- scopes \n- annotations \n- flow \n- orchestrators \n- policies \n- report" + CEND)
     print (BOLD+ Cyan+ UNDERLINE + ITALIC +"Operator support:"+ CEND)

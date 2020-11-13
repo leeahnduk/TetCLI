@@ -2,46 +2,497 @@
     "absolute_policies": [],
     "default_policies": [
         {
-            "id": "5e6f2c92755f023700a312ff",
-            "application_id": "5e546175755f0235f2a2f4d4",
-            "version": "v3",
+            "id": "5e4f6bdb755f02311c38d4fa",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
             "rank": "DEFAULT",
             "action": "ALLOW",
-            "priority": 99,
+            "priority": 90,
             "l4_params": [
                 {
-                    "id": "5e6f3c11755f0235f2a315b1",
+                    "id": "5e4f6be1755f0214cb38c804",
                     "proto": 6,
                     "port": [
                         80,
                         80
                     ],
-                    "description": "Updated by API",
                     "approved": true
+                }
+            ],
+            "consumer_filter_id": "5e4f6a7c497d4f1cbda6f539",
+            "consumer_filter": {
+                "_id": "5e4f6a7c497d4f1cbda6f539",
+                "id": "5e4f6a7c497d4f1cbda6f539",
+                "filter_type": "UserInventoryFilter",
+                "name": "Employee",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "user_ISE_ctsSecurityGroup",
+                    "value": "Employees"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_ISE_ctsSecurityGroup",
+                            "type": "eq",
+                            "value": "Employees"
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": true,
+                "created_at": 1582262908,
+                "updated_at": 1584422374,
+                "deleted_at": null,
+                "app_scope_id": "5cde5ce5755f027d7ea468dd"
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b34",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3b97",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f76",
+                    "proto": 17,
+                    "port": [
+                        53,
+                        53
+                    ]
                 },
                 {
-                    "id": "5e6f3cbd497d4f21bc211f14",
+                    "id": "5d1adca9755f023300282f77",
+                    "proto": 1
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b38",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b38",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f13",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.4"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.4"
+                        }
+                    ]
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1567999506
+            },
+            "provider_filter_id": "5ce3459c755f023683a468dc",
+            "provider_filter": {
+                "_id": "5ce3459c755f023683a468dc",
+                "id": "5ce3459c755f023683a468dc",
+                "filter_type": "UserInventoryFilter",
+                "name": "DNS",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "ip",
+                    "value": "172.16.17.18"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "or",
+                                    "filters": [
+                                        {
+                                            "field": "user_App",
+                                            "type": "eq",
+                                            "value": "Shared"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.1"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "eq",
+                                        "value": "172.16.254.102"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.16.17.18"
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": true,
+                "created_at": 1558398364,
+                "updated_at": 1599385024,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3b99",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f54",
+                    "proto": 6,
+                    "port": [
+                        443,
+                        443
+                    ]
+                },
+                {
+                    "id": "5d1adca9755f023300282f55",
+                    "proto": 6,
+                    "port": [
+                        5660,
+                        5660
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b37",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            },
+            "provider_filter_id": "5ce2572d497d4f3f5388fcc2",
+            "provider_filter": {
+                "filter_type": "AppScope",
+                "id": "5ce2572d497d4f3f5388fcc2",
+                "name": "tmitsue:Tetration",
+                "description": null,
+                "short_name": "Tetration",
+                "priority": "003:002:Z",
+                "short_priority": 2,
+                "policy_priority": 8,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "ip",
+                            "type": "subnet",
+                            "value": "172.17.1.0/24"
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "subnet",
+                    "field": "ip",
+                    "value": "172.17.1.0/24"
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [],
+                "created_at": 1558337325,
+                "updated_at": 1599440945,
+                "deleted_at": null
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3b9a",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282fa5",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b34",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b37",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3b9b",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5f6b354e497d4f08276a0279",
                     "proto": 17,
                     "port": [
                         123,
                         123
                     ],
-                    "description": "Updated by API",
+                    "approved": true
+                },
+                {
+                    "id": "5f6b354e497d4f08276a027a",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ],
                     "approved": true
                 }
             ],
-            "consumer_filter_id": "5e1cf91c497d4f0483d0c39d",
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b38",
             "consumer_filter": {
-                "_id": "5e1cf91c497d4f0483d0c39d",
-                "id": "5e1cf91c497d4f0483d0c39d",
-                "filter_type": "UserInventoryFilter",
-                "name": "Prod",
+                "id": "5d1ae455755f021c8d3a3b38",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f13",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "db",
                 "description": null,
-                "short_query": {
-                    "type": "contains",
-                    "field": "user_orchestrator_Environment",
-                    "value": "Prod"
-                },
                 "query": {
                     "type": "and",
                     "filters": [
@@ -51,29 +502,66 @@
                             "value": 676768
                         },
                         {
-                            "field": "user_orchestrator_Environment",
-                            "type": "contains",
-                            "value": "Prod"
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.4"
+                                }
+                            ]
                         }
                     ]
                 },
-                "public": false,
-                "primary": false,
-                "created_at": 1578957084,
-                "updated_at": 1578957084,
-                "app_scope_id": "5e1be11a755f0277f20f498c"
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.4"
+                        }
+                    ]
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1567999506
             },
-            "provider_filter_id": "5e1cf939755f0277fa0f4acf",
+            "provider_filter_id": "5ce34f13497d4f0ba688fcc4",
             "provider_filter": {
-                "_id": "5e1cf939755f0277fa0f4acf",
-                "id": "5e1cf939755f0277fa0f4acf",
+                "_id": "5ce34f13497d4f0ba688fcc4",
+                "id": "5ce34f13497d4f0ba688fcc4",
                 "filter_type": "UserInventoryFilter",
-                "name": "PCI",
+                "name": "Internet",
                 "description": null,
                 "short_query": {
-                    "type": "contains",
-                    "field": "user_orchestrator_PCI",
-                    "value": "Yes"
+                    "type": "and",
+                    "filters": [
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "10.0.0.0/8"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "172.16.0.0/12"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "192.168.0.0/16"
+                            }
+                        }
+                    ]
                 },
                 "query": {
                     "type": "and",
@@ -84,19 +572,2621 @@
                             "value": 676768
                         },
                         {
-                            "field": "user_orchestrator_PCI",
-                            "type": "contains",
-                            "value": "Yes"
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "10.0.0.0/8"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "172.16.0.0/12"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "192.168.0.0/16"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": false,
+                "created_at": 1558400787,
+                "updated_at": 1558401346,
+                "deleted_at": null,
+                "app_scope_id": "5cde5ce5755f027d7ea468dd"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3b9c",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f85",
+                    "proto": 6,
+                    "port": [
+                        443,
+                        443
+                    ]
+                },
+                {
+                    "id": "5d1adca9755f023300282f86",
+                    "proto": 6,
+                    "port": [
+                        5660,
+                        5660
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b34",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            },
+            "provider_filter_id": "5ce2572d497d4f3f5388fcc2",
+            "provider_filter": {
+                "filter_type": "AppScope",
+                "id": "5ce2572d497d4f3f5388fcc2",
+                "name": "tmitsue:Tetration",
+                "description": null,
+                "short_name": "Tetration",
+                "priority": "003:002:Z",
+                "short_priority": 2,
+                "policy_priority": 8,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "ip",
+                            "type": "subnet",
+                            "value": "172.17.1.0/24"
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "subnet",
+                    "field": "ip",
+                    "value": "172.17.1.0/24"
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [],
+                "created_at": 1558337325,
+                "updated_at": 1599440945,
+                "deleted_at": null
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3b9d",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282faa",
+                    "proto": 6,
+                    "port": [
+                        443,
+                        443
+                    ]
+                },
+                {
+                    "id": "5d1adca9755f023300282fab",
+                    "proto": 6,
+                    "port": [
+                        5660,
+                        5660
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b39",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            },
+            "provider_filter_id": "5ce2572d497d4f3f5388fcc2",
+            "provider_filter": {
+                "filter_type": "AppScope",
+                "id": "5ce2572d497d4f3f5388fcc2",
+                "name": "tmitsue:Tetration",
+                "description": null,
+                "short_name": "Tetration",
+                "priority": "003:002:Z",
+                "short_priority": 2,
+                "policy_priority": 8,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "ip",
+                            "type": "subnet",
+                            "value": "172.17.1.0/24"
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "subnet",
+                    "field": "ip",
+                    "value": "172.17.1.0/24"
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [],
+                "created_at": 1558337325,
+                "updated_at": 1599440945,
+                "deleted_at": null
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3ba0",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae303497d4f4a29ccb816",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5cde5ce5755f027d7ea468dd",
+            "consumer_filter": {
+                "filter_type": "AppScope",
+                "id": "5cde5ce5755f027d7ea468dd",
+                "name": "tmitsue",
+                "description": null,
+                "short_name": "tmitsue",
+                "priority": "003:Z",
+                "short_priority": 3,
+                "policy_priority": 1,
+                "query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                },
+                "short_query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [
+                    "5ce21068755f0278f6a468d9",
+                    "5ce2572d497d4f3f5388fcc2",
+                    "5e01c3df755f0205a6fdd6fe"
+                ],
+                "created_at": 1558076645,
+                "updated_at": 1592375467,
+                "deleted_at": null,
+                "switch_vrfs": []
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b34",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3ba3",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f9f",
+                    "proto": 17,
+                    "port": [
+                        53,
+                        53
+                    ]
+                },
+                {
+                    "id": "5d1adca9755f023300282f9e",
+                    "proto": 1
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b34",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            },
+            "provider_filter_id": "5ce3459c755f023683a468dc",
+            "provider_filter": {
+                "_id": "5ce3459c755f023683a468dc",
+                "id": "5ce3459c755f023683a468dc",
+                "filter_type": "UserInventoryFilter",
+                "name": "DNS",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "ip",
+                    "value": "172.16.17.18"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "or",
+                                    "filters": [
+                                        {
+                                            "field": "user_App",
+                                            "type": "eq",
+                                            "value": "Shared"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.1"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "eq",
+                                        "value": "172.16.254.102"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.16.17.18"
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": true,
+                "created_at": 1558398364,
+                "updated_at": 1599385024,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3ba4",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282fbd",
+                    "proto": 1
+                },
+                {
+                    "id": "5d1adca9755f023300282fbe",
+                    "proto": 17,
+                    "port": [
+                        53,
+                        53
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b37",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            },
+            "provider_filter_id": "5ce3459c755f023683a468dc",
+            "provider_filter": {
+                "_id": "5ce3459c755f023683a468dc",
+                "id": "5ce3459c755f023683a468dc",
+                "filter_type": "UserInventoryFilter",
+                "name": "DNS",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "ip",
+                    "value": "172.16.17.18"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "or",
+                                    "filters": [
+                                        {
+                                            "field": "user_App",
+                                            "type": "eq",
+                                            "value": "Shared"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.1"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "eq",
+                                        "value": "172.16.254.102"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.16.17.18"
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": true,
+                "created_at": 1558398364,
+                "updated_at": 1599385024,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3ba5",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae303497d4f4a29ccb7f0",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5cde5ce5755f027d7ea468dd",
+            "consumer_filter": {
+                "filter_type": "AppScope",
+                "id": "5cde5ce5755f027d7ea468dd",
+                "name": "tmitsue",
+                "description": null,
+                "short_name": "tmitsue",
+                "priority": "003:Z",
+                "short_priority": 3,
+                "policy_priority": 1,
+                "query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                },
+                "short_query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [
+                    "5ce21068755f0278f6a468d9",
+                    "5ce2572d497d4f3f5388fcc2",
+                    "5e01c3df755f0205a6fdd6fe"
+                ],
+                "created_at": 1558076645,
+                "updated_at": 1592375467,
+                "deleted_at": null,
+                "switch_vrfs": []
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b38",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b38",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f13",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.4"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.4"
+                        }
+                    ]
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1567999506
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3ba8",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae303497d4f4a29ccb7f6",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5f6d5ba6755f0244b4ece815",
+            "consumer_filter": {
+                "_id": "5f6d5ba6755f0244b4ece815",
+                "id": "5f6d5ba6755f0244b4ece815",
+                "filter_type": "UserInventoryFilter",
+                "name": "tmitsue-less-k8s",
+                "description": null,
+                "short_query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "type": "eq",
+                            "field": "vrf_id",
+                            "value": 676768
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "or",
+                                "filters": [
+                                    {
+                                        "type": "subnet",
+                                        "field": "ip",
+                                        "value": "10.255.0.0/24"
+                                    },
+                                    {
+                                        "type": "subnet",
+                                        "field": "ip",
+                                        "value": "172.18.201.0/24"
+                                    },
+                                    {
+                                        "type": "subnet",
+                                        "field": "ip",
+                                        "value": "172.18.202.0/24"
+                                    },
+                                    {
+                                        "type": "eq",
+                                        "field": "ip",
+                                        "value": "172.18.221.1"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "type": "or",
+                                        "filters": [
+                                            {
+                                                "field": "ip",
+                                                "type": "subnet",
+                                                "value": "10.255.0.0/24"
+                                            },
+                                            {
+                                                "field": "ip",
+                                                "type": "subnet",
+                                                "value": "172.18.201.0/24"
+                                            },
+                                            {
+                                                "field": "ip",
+                                                "type": "subnet",
+                                                "value": "172.18.202.0/24"
+                                            },
+                                            {
+                                                "field": "ip",
+                                                "type": "eq",
+                                                "value": "172.18.221.1"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     ]
                 },
                 "public": false,
                 "primary": false,
-                "created_at": 1578957113,
-                "updated_at": 1578957113,
-                "app_scope_id": "5e1be11a755f0277f20f498c"
+                "created_at": 1601002406,
+                "updated_at": 1601002406,
+                "deleted_at": null,
+                "app_scope_id": "5cde5ce5755f027d7ea468dd"
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b37",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3ba9",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f5f",
+                    "proto": 17,
+                    "port": [
+                        53,
+                        53
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b39",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            },
+            "provider_filter_id": "5ce3459c755f023683a468dc",
+            "provider_filter": {
+                "_id": "5ce3459c755f023683a468dc",
+                "id": "5ce3459c755f023683a468dc",
+                "filter_type": "UserInventoryFilter",
+                "name": "DNS",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "ip",
+                    "value": "172.16.17.18"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "or",
+                                    "filters": [
+                                        {
+                                            "field": "user_App",
+                                            "type": "eq",
+                                            "value": "Shared"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.1"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "eq",
+                                        "value": "172.16.254.102"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.16.17.18"
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": true,
+                "created_at": 1558398364,
+                "updated_at": 1599385024,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3baa",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f79",
+                    "proto": 6,
+                    "port": [
+                        3306,
+                        3306
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b37",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b39",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bab",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5f6b3557497d4f08276a027c",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ],
+                    "approved": true
+                },
+                {
+                    "id": "5f6b3557497d4f08276a027d",
+                    "proto": 17,
+                    "port": [
+                        123,
+                        123
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b39",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            },
+            "provider_filter_id": "5ce34f13497d4f0ba688fcc4",
+            "provider_filter": {
+                "_id": "5ce34f13497d4f0ba688fcc4",
+                "id": "5ce34f13497d4f0ba688fcc4",
+                "filter_type": "UserInventoryFilter",
+                "name": "Internet",
+                "description": null,
+                "short_query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "10.0.0.0/8"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "172.16.0.0/12"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "192.168.0.0/16"
+                            }
+                        }
+                    ]
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "10.0.0.0/8"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "172.16.0.0/12"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "192.168.0.0/16"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": false,
+                "created_at": 1558400787,
+                "updated_at": 1558401346,
+                "deleted_at": null,
+                "app_scope_id": "5cde5ce5755f027d7ea468dd"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bac",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f5a",
+                    "proto": 6,
+                    "port": [
+                        3306,
+                        3306
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b39",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b38",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b38",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f13",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.4"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.4"
+                        }
+                    ]
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1567999506
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bad",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282fa7",
+                    "proto": 6,
+                    "port": [
+                        443,
+                        443
+                    ]
+                },
+                {
+                    "id": "5d1adca9755f023300282fa8",
+                    "proto": 6,
+                    "port": [
+                        5660,
+                        5660
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b38",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b38",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f13",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.4"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.4"
+                        }
+                    ]
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1567999506
+            },
+            "provider_filter_id": "5ce2572d497d4f3f5388fcc2",
+            "provider_filter": {
+                "filter_type": "AppScope",
+                "id": "5ce2572d497d4f3f5388fcc2",
+                "name": "tmitsue:Tetration",
+                "description": null,
+                "short_name": "Tetration",
+                "priority": "003:002:Z",
+                "short_priority": 2,
+                "policy_priority": 8,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "ip",
+                            "type": "subnet",
+                            "value": "172.17.1.0/24"
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "subnet",
+                    "field": "ip",
+                    "value": "172.17.1.0/24"
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [],
+                "created_at": 1558337325,
+                "updated_at": 1599440945,
+                "deleted_at": null
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bae",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5f6b3563497d4f076969f8d2",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ],
+                    "approved": true
+                },
+                {
+                    "id": "5f6b3563497d4f076969f8d3",
+                    "proto": 17,
+                    "port": [
+                        123,
+                        123
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b34",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            },
+            "provider_filter_id": "5ce34f13497d4f0ba688fcc4",
+            "provider_filter": {
+                "_id": "5ce34f13497d4f0ba688fcc4",
+                "id": "5ce34f13497d4f0ba688fcc4",
+                "filter_type": "UserInventoryFilter",
+                "name": "Internet",
+                "description": null,
+                "short_query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "10.0.0.0/8"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "172.16.0.0/12"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "192.168.0.0/16"
+                            }
+                        }
+                    ]
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "10.0.0.0/8"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "172.16.0.0/12"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "192.168.0.0/16"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": false,
+                "created_at": 1558400787,
+                "updated_at": 1558401346,
+                "deleted_at": null,
+                "app_scope_id": "5cde5ce5755f027d7ea468dd"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3baf",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5f6b3543755f02689ced0278",
+                    "proto": 17,
+                    "port": [
+                        123,
+                        123
+                    ],
+                    "approved": true
+                },
+                {
+                    "id": "5f6b3543755f02689ced0279",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5d1ae455755f021c8d3a3b37",
+            "consumer_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            },
+            "provider_filter_id": "5ce34f13497d4f0ba688fcc4",
+            "provider_filter": {
+                "_id": "5ce34f13497d4f0ba688fcc4",
+                "id": "5ce34f13497d4f0ba688fcc4",
+                "filter_type": "UserInventoryFilter",
+                "name": "Internet",
+                "description": null,
+                "short_query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "10.0.0.0/8"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "172.16.0.0/12"
+                            }
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "subnet",
+                                "field": "ip",
+                                "value": "192.168.0.0/16"
+                            }
+                        }
+                    ]
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "10.0.0.0/8"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "172.16.0.0/12"
+                                    }
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "subnet",
+                                        "value": "192.168.0.0/16"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "public": true,
+                "primary": false,
+                "created_at": 1558400787,
+                "updated_at": 1558401346,
+                "deleted_at": null,
+                "app_scope_id": "5cde5ce5755f027d7ea468dd"
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bb0",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae303497d4f4a29ccb7fc",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ]
+                },
+                {
+                    "id": "5d1ae303497d4f4a29ccb7fd",
+                    "proto": 1
+                }
+            ],
+            "consumer_filter_id": "5cde5ce5755f027d7ea468dd",
+            "consumer_filter": {
+                "filter_type": "AppScope",
+                "id": "5cde5ce5755f027d7ea468dd",
+                "name": "tmitsue",
+                "description": null,
+                "short_name": "tmitsue",
+                "priority": "003:Z",
+                "short_priority": 3,
+                "policy_priority": 1,
+                "query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                },
+                "short_query": {
+                    "type": "eq",
+                    "field": "vrf_id",
+                    "value": 676768
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [
+                    "5ce21068755f0278f6a468d9",
+                    "5ce2572d497d4f3f5388fcc2",
+                    "5e01c3df755f0205a6fdd6fe"
+                ],
+                "created_at": 1558076645,
+                "updated_at": 1592375467,
+                "deleted_at": null,
+                "switch_vrfs": []
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b39",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bb1",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1adca9755f023300282f96",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ]
+                }
+            ],
+            "consumer_filter_id": "5ce21096497d4f519e88fcbc",
+            "consumer_filter": {
+                "filter_type": "AppScope",
+                "id": "5ce21096497d4f519e88fcbc",
+                "name": "tmitsue:Lab:Shared Service",
+                "description": null,
+                "short_name": "Shared Service",
+                "priority": "003:001:001:Z",
+                "short_priority": 1,
+                "policy_priority": 3,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "type": "or",
+                                    "filters": [
+                                        {
+                                            "field": "user_App",
+                                            "type": "eq",
+                                            "value": "Shared"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.1"
+                                        },
+                                        {
+                                            "field": "ip",
+                                            "type": "eq",
+                                            "value": "10.0.0.2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "not",
+                                    "filter": {
+                                        "field": "ip",
+                                        "type": "eq",
+                                        "value": "172.16.254.102"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "type": "eq",
+                                    "field": "user_App",
+                                    "value": "Shared"
+                                },
+                                {
+                                    "type": "eq",
+                                    "field": "ip",
+                                    "value": "10.0.0.1"
+                                },
+                                {
+                                    "type": "eq",
+                                    "field": "ip",
+                                    "value": "10.0.0.2"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "not",
+                            "filter": {
+                                "type": "eq",
+                                "field": "ip",
+                                "value": "172.16.254.102"
+                            }
+                        }
+                    ]
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "5ce21068755f0278f6a468d9",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [
+                    "5e6b3e4e497d4f4227a6fcbc",
+                    "5efef890497d4f117b53c6f4"
+                ],
+                "created_at": 1558319254,
+                "updated_at": 1599385024,
+                "deleted_at": null
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b37",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            }
+        },
+        {
+            "id": "5d1ae455755f021c8d3a3bb2",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae344497d4f6f6188fd2e",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5ceb833a755f020559a468eb",
+            "consumer_filter": {
+                "_id": "5ceb833a755f020559a468eb",
+                "id": "5ceb833a755f020559a468eb",
+                "filter_type": "UserInventoryFilter",
+                "name": "SSH_Jumpbox",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "user_Function",
+                    "value": "SSH-Jumpbox"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "SSH-Jumpbox"
+                        }
+                    ]
+                },
+                "public": false,
+                "primary": false,
+                "created_at": 1558938426,
+                "updated_at": 1558957221,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b34",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
+            }
+        },
+        {
+            "id": "5d1ae4aa497d4f6f6188fd32",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae4b0497d4f6f6188fd34",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5ceb833a755f020559a468eb",
+            "consumer_filter": {
+                "_id": "5ceb833a755f020559a468eb",
+                "id": "5ceb833a755f020559a468eb",
+                "filter_type": "UserInventoryFilter",
+                "name": "SSH_Jumpbox",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "user_Function",
+                    "value": "SSH-Jumpbox"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "SSH-Jumpbox"
+                        }
+                    ]
+                },
+                "public": false,
+                "primary": false,
+                "created_at": 1558938426,
+                "updated_at": 1558957221,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b37",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b37",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f17",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "Web"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "Web"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1562830622
+            }
+        },
+        {
+            "id": "5d1ae4bb755f025be1a468ec",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae4c1497d4f6f6188fd36",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5ceb833a755f020559a468eb",
+            "consumer_filter": {
+                "_id": "5ceb833a755f020559a468eb",
+                "id": "5ceb833a755f020559a468eb",
+                "filter_type": "UserInventoryFilter",
+                "name": "SSH_Jumpbox",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "user_Function",
+                    "value": "SSH-Jumpbox"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "SSH-Jumpbox"
+                        }
+                    ]
+                },
+                "public": false,
+                "primary": false,
+                "created_at": 1558938426,
+                "updated_at": 1558957221,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b39",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b39",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f18",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "DB-Proxy"
+                        },
+                        {
+                            "type": "and",
+                            "filters": [
+                                {
+                                    "field": "vrf_id",
+                                    "type": "eq",
+                                    "value": 676768
+                                },
+                                {
+                                    "field": "user_location",
+                                    "type": "eq",
+                                    "value": "Lab"
+                                },
+                                {
+                                    "field": "user_App",
+                                    "type": "eq",
+                                    "value": "Bugzilla"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "field": "user_Function",
+                    "type": "eq",
+                    "value": "DB-Proxy"
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1585008282
+            }
+        },
+        {
+            "id": "5d1ae4ca497d4f6f6188fd38",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5d1ae4cf755f020228a468ec",
+                    "proto": 6,
+                    "port": [
+                        22,
+                        22
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5ceb833a755f020559a468eb",
+            "consumer_filter": {
+                "_id": "5ceb833a755f020559a468eb",
+                "id": "5ceb833a755f020559a468eb",
+                "filter_type": "UserInventoryFilter",
+                "name": "SSH_Jumpbox",
+                "description": null,
+                "short_query": {
+                    "type": "eq",
+                    "field": "user_Function",
+                    "value": "SSH-Jumpbox"
+                },
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_Function",
+                            "type": "eq",
+                            "value": "SSH-Jumpbox"
+                        }
+                    ]
+                },
+                "public": false,
+                "primary": false,
+                "created_at": 1558938426,
+                "updated_at": 1558957221,
+                "deleted_at": null,
+                "app_scope_id": "5ce21096497d4f519e88fcbc"
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b38",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b38",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f13",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "db",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.4"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.4"
+                        }
+                    ]
+                },
+                "approved": true,
+                "created_at": 1562043477,
+                "updated_at": 1567999506
+            }
+        },
+        {
+            "id": "5eb4f993755f024a6e4e1a9a",
+            "application_id": "5ce210e0497d4f4dd588fcc6",
+            "version": "v14",
+            "rank": "DEFAULT",
+            "action": "ALLOW",
+            "priority": 100,
+            "l4_params": [
+                {
+                    "id": "5eb4f99a755f0275ca4e1d30",
+                    "proto": 6,
+                    "port": [
+                        80,
+                        80
+                    ],
+                    "approved": true
+                }
+            ],
+            "consumer_filter_id": "5ce21068755f0278f6a468d9",
+            "consumer_filter": {
+                "filter_type": "AppScope",
+                "id": "5ce21068755f0278f6a468d9",
+                "name": "tmitsue:Lab",
+                "description": null,
+                "short_name": "Lab",
+                "priority": "003:001:Z",
+                "short_priority": 1,
+                "policy_priority": 2,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "field": "user_location",
+                            "type": "eq",
+                            "value": "Lab"
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "eq",
+                    "field": "user_location",
+                    "value": "Lab"
+                },
+                "dirty": false,
+                "dirty_short_query": null,
+                "vrf_id": 676768,
+                "parent_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "root_app_scope_id": "5cde5ce5755f027d7ea468dd",
+                "child_app_scope_ids": [
+                    "5ce21096497d4f519e88fcbc",
+                    "5ce210a6755f0224eda468d8",
+                    "5d19a879497d4f47c588fcbc",
+                    "5d96d9e4497d4f3b5ada73db",
+                    "5f54a675755f0254e2ecfb05"
+                ],
+                "created_at": 1558319208,
+                "updated_at": 1599385024,
+                "deleted_at": null
+            },
+            "provider_filter_id": "5d1ae455755f021c8d3a3b34",
+            "provider_filter": {
+                "id": "5d1ae455755f021c8d3a3b34",
+                "filter_type": "Cluster",
+                "consistent_uuid": "5d1adca9755f023300282f16",
+                "application_id": "5ce210e0497d4f4dd588fcc6",
+                "version": "v14",
+                "name": "haproxy-app",
+                "description": null,
+                "query": {
+                    "type": "and",
+                    "filters": [
+                        {
+                            "field": "vrf_id",
+                            "type": "eq",
+                            "value": 676768
+                        },
+                        {
+                            "type": "or",
+                            "filters": [
+                                {
+                                    "field": "ip",
+                                    "type": "eq",
+                                    "value": "172.18.11.11"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "short_query": {
+                    "type": "or",
+                    "filters": [
+                        {
+                            "field": "ip",
+                            "type": "eq",
+                            "value": "172.18.11.11"
+                        }
+                    ]
+                },
+                "approved": false,
+                "created_at": 1562043477,
+                "updated_at": 1567998922
             }
         }
     ],
-    "catch_all_action": "ALLOW"
+    "catch_all_action": "DENY"
 }

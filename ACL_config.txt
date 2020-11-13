@@ -1,186 +1,472 @@
-ip access-list tet-acl 
-	 permit UDP host 172.17.16.236 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.236 host 172.16.1.91 eq 123
-	 permit TCP host 172.16.90.25 host 172.17.16.236 eq 80
-	 permit TCP host 172.16.1.38 host 172.17.16.236 eq 80
-	 permit TCP host 172.17.16.234 host 172.17.16.236 eq 80
-	 permit TCP host 172.16.1.37 host 172.17.16.236 eq 80
-	 permit TCP host 172.16.90.26 host 172.17.16.236 eq 80
-	 permit UDP host 172.17.16.236 host 172.16.1.98 eq 53
-	 permit TCP host 172.17.16.235 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.235 host 172.17.0.16 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.237 host 172.17.0.16 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.238 host 172.17.0.16 eq 5660
-	 permit UDP host 172.17.16.233 host 172.16.1.98 eq 53
-	 permit TCP host 172.17.16.236 host 172.17.16.235 eq 8081
-	 permit TCP host 172.17.16.236 host 172.17.16.237 eq 8081
-	 permit TCP host 172.17.16.236 host 172.17.16.238 eq 8081
-	 permit TCP host 172.17.16.233 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.233 host 172.17.0.16 eq 5660
-	 permit UDP host 172.17.16.232 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.232 host 172.16.1.91 eq 123
-	 permit UDP host 172.17.16.240 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.240 host 172.16.1.91 eq 123
-	 permit UDP host 172.17.16.239 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.239 host 172.16.1.91 eq 123
-	 permit TCP host 172.17.16.233 host 172.17.16.232 eq 3306
-	 permit TCP host 172.17.16.233 host 172.17.16.240 eq 3306
-	 permit TCP host 172.17.16.233 host 172.17.16.239 eq 3306
-	 permit UDP host 172.17.16.235 host 172.16.1.98 eq 53
-	 permit UDP host 172.17.16.237 host 172.16.1.98 eq 53
-	 permit UDP host 172.17.16.238 host 172.16.1.98 eq 53
-	 permit UDP host 172.17.16.232 host 172.16.1.98 eq 53
-	 permit UDP host 172.17.16.240 host 172.16.1.98 eq 53
-	 permit UDP host 172.17.16.239 host 172.16.1.98 eq 53
-	 permit TCP host 172.17.16.235 host 172.17.16.233 eq 3306
-	 permit TCP host 172.17.16.237 host 172.17.16.233 eq 3306
-	 permit TCP host 172.17.16.238 host 172.17.16.233 eq 3306
-	 permit UDP host 172.17.16.233 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.233 host 172.16.1.91 eq 123
-	 permit TCP host 172.17.16.232 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.232 host 172.17.0.16 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.240 host 172.17.0.16 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.239 host 172.17.0.16 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.8 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.12 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.11 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.17 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.14 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.6 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.20 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.13 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.10 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.19 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.9 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.15 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.5 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.21 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.7 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.18 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.22 eq 5660
-	 permit TCP host 172.17.16.236 host 172.17.0.16 eq 5660
-	 permit UDP host 172.17.16.235 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.235 host 172.16.1.91 eq 123
-	 permit UDP host 172.17.16.237 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.237 host 172.16.1.91 eq 123
-	 permit UDP host 172.17.16.238 host 172.16.1.90 eq 123
-	 permit UDP host 172.17.16.238 host 172.16.1.91 eq 123
-	 deny ip any any
+object network os3-*
+  host 10.9.8.11
+  host 10.9.8.22
+  host 10.9.8.21
+object network os3-w2
+  host 10.0.48.97
+object network 10.227.0.1*
+  host 10.227.0.138
+  host 10.227.0.144
+object network 10.227.0.166
+  host 10.227.0.166
+object network 10.227.0.145
+  host 10.227.0.145
+object network os3-*_[2]
+  host 10.0.48.98
+  host 10.0.240.92
+object network os3-w1
+  host 10.0.240.88
+object network os3-w3
+  host 10.0.48.102
+object network 10.227.0.*
+  host 10.227.0.7
+  host 10.227.0.3
+  host 10.227.0.6
+object network 10.227.0.8
+  host 10.227.0.8
+object network os3-w*
+  host 10.9.8.23
+  host 10.9.8.24
+object network 10.227.0.*_[2]
+  host 10.227.0.4
+  host 10.227.0.5
+object network 10.227.0.*_[3]
+  host 10.227.0.141
+  host 10.227.0.131
+  host 10.227.0.142
+  host 10.227.0.146
+  host 10.227.0.133
+  host 10.227.0.66
+  host 10.227.0.134
+  host 10.227.0.140
+  host 10.227.0.147
+object network ASEAN_DMZ
+  host 1.1.0.17
+  host 1.1.0.49
+  host 10.0.48.107
+  host 10.9.88.10
+  host 10.10.0.49
+  host 10.12.0.15
+  host 10.227.0.56
+  host 192.168.20.29
+  host 192.168.20.221
+  host 192.168.28.5
+  host 192.168.30.7
+  host 192.168.32.201
+  host 192.168.90.3
+  host 192.168.101.14
+  host 1.1.0.6
+  host 1.1.0.38
+  host 10.0.48.96
+  host 10.9.16.23
+  host 10.227.0.45
+  host 10.227.0.77
+  host 10.227.0.141
+  host 52.5.11.128
+  host 104.18.125.25
+  host 172.17.0.1
+  host 192.168.20.50
+  host 1.1.0.14
+  host 1.1.0.46
+  host 10.0.48.104
+  host 10.0.72.64
+  host 10.7.248.201
+  host 10.9.8.23
+  host 10.10.0.46
+  host 91.189.91.39
+  host 91.189.92.40
+  host 192.168.30.4
+  host 192.168.32.102
+  host 192.168.33.135
+  host 192.168.101.11
+  host 1.1.0.16
+  host 1.1.0.48
+  host 10.0.48.106
+  host 10.0.72.66
+  host 10.0.240.74
+  host 10.227.0.55
+  host 10.227.0.87
+  host 107.23.149.57
+  host 192.30.255.113
+  host 192.168.28.4
+  host 192.168.30.6
+  host 192.168.32.200
+  host 192.168.33.137
+  host 192.168.90.2
+  host 192.168.101.13
+  host 1.1.0.32
+  host 1.1.1.1
+  host 8.8.8.8
+  host 10.0.48.122
+  host 10.227.0.7
+  host 10.227.0.39
+  host 10.227.0.71
+  host 10.227.0.167
+  host 10.228.0.6
+  host 23.76.92.135
+  host 23.199.147.195
+  host 184.26.21.147
+  host 184.26.245.147
+  host 192.168.20.44
+  host 192.168.20.204
+  host 1.1.0.28
+  host 1.1.1.253
+  host 10.6.1.1
+  host 10.6.1.65
+  host 10.9.81.14
+  host 10.227.0.3
+  host 10.227.0.35
+  host 10.227.0.131
+  host 10.227.0.163
+  host 10.228.0.2
+  host 10.228.0.130
+  host 192.168.20.8
+  host 192.168.20.40
+  host 192.168.20.200
+  host 192.168.22.10
+  host 192.168.80.4
+  host 1.1.0.33
+  host 10.7.236.80
+  host 10.68.50.25
+  host 10.227.0.8
+  host 10.227.0.40
+  host 10.227.0.72
+  host 10.228.0.7
+  host 10.255.255.11
+  host 52.72.232.213
+  host 192.168.20.45
+  host 192.168.32.249
+  host 218.186.3.36
+  host 1.1.0.29
+  host 1.1.1.254
+  host 10.227.0.4
+  host 10.227.0.68
+  host 10.227.0.164
+  host 23.42.171.53
+  host 184.26.205.72
+  host 192.168.20.9
+  host 192.168.20.41
+  host 192.168.20.201
+  host 192.168.22.11
+  host 192.168.80.5
+  host 1.1.0.7
+  host 1.1.0.39
+  host 10.0.48.97
+  host 10.14.0.3
+  host 10.227.0.46
+  host 10.227.0.142
+  host 104.18.124.25
+  host 192.168.20.51
+  host 1.1.0.15
+  host 1.1.0.47
+  host 10.0.48.105
+  host 10.7.248.202
+  host 10.9.8.24
+  host 10.10.0.47
+  host 10.12.0.13
+  host 10.227.0.54
+  host 52.54.232.21
+  host 91.189.92.41
+  host 192.168.20.219
+  host 192.168.30.5
+  host 192.168.32.103
+  host 192.168.33.136
+  host 192.168.90.1
+  host 192.168.101.12
+  host 1.1.0.25
+  host 10.0.48.115
+  host 10.6.1.62
+  host 10.7.238.10
+  host 10.9.80.10
+  host 10.9.81.11
+  host 10.9.82.12
+  host 54.236.131.166
+  host 91.189.92.19
+  host 192.168.20.5
+  host 192.168.20.101
+  host 192.168.22.7
+  host 1.1.0.8
+  host 1.1.0.40
+  host 3.218.162.19
+  host 10.0.48.98
+  host 10.7.249.100
+  host 10.10.0.40
+  host 10.227.0.47
+  host 10.227.0.79
+  host 18.213.137.78
+  host 23.15.154.138
+  host 104.18.123.25
+  host 172.17.61.0
+  host 172.31.255.20
+  host 192.168.20.20
+  host 192.168.20.52
+  host 192.168.21.21
+  host 192.168.36.100
+  host 209.132.183.108
+  host 1.1.0.18
+  host 1.1.0.50
+  host 10.0.48.108
+  host 10.0.240.76
+  host 10.10.0.50
+  host 10.227.0.57
+  host 10.227.0.89
+  host 192.168.20.30
+  host 192.168.20.222
+  host 192.168.28.6
+  host 192.168.30.8
+  host 192.168.255.9
+  host 1.1.0.34
+  host 3.211.199.249
+  host 10.0.48.124
+  host 10.0.240.92
+  host 10.9.8.11
+  host 10.227.0.41
+  host 10.228.0.8
+  host 23.8.232.185
+  host 34.195.246.183
+  host 91.189.88.152
+  host 91.189.88.184
+  host 125.252.237.176
+  host 192.168.8.2
+  host 192.168.20.14
+  host 192.168.20.46
+  host 192.168.32.90
+  host 1.1.0.11
+  host 1.1.0.43
+  host 10.0.48.101
+  host 10.9.12.24
+  host 10.10.0.43
+  host 10.227.0.146
+  host 192.168.20.215
+  host 1.1.0.30
+  host 10.0.240.88
+  host 10.9.12.11
+  host 10.227.0.5
+  host 10.227.0.69
+  host 10.227.0.133
+  host 10.227.0.165
+  host 96.7.108.99
+  host 118.214.101.227
+  host 192.168.20.42
+  host 192.168.20.202
+  host 192.168.22.12
+  host 192.168.80.6
+  host 1.1.0.4
+  host 1.1.0.36
+  host 10.9.16.21
+  host 10.227.0.75
+  host 54.85.56.253
+  host 172.16.1.1
+  host 1.1.0.24
+  host 10.0.48.114
+  host 10.6.1.61
+  host 10.9.81.10
+  host 10.9.82.11
+  host 23.22.155.84
+  host 91.189.88.142
+  host 91.189.91.49
+  host 104.79.122.171
+  host 172.31.255.4
+  host 192.168.20.4
+  host 192.168.20.100
+  host 192.168.20.228
+  host 192.168.22.6
+  host 192.168.255.111
+  host 1.1.0.27
+  host 1.1.1.252
+  host 10.6.1.64
+  host 10.9.16.12
+  host 10.9.80.12
+  host 10.9.81.13
+  host 10.9.82.14
+  host 10.227.0.34
+  host 10.227.0.66
+  host 10.227.0.162
+  host 192.168.20.7
+  host 192.168.20.103
+  host 192.168.20.199
+  host 192.168.22.9
+  host 192.168.80.3
+  host 1.1.0.20
+  host 1.1.0.52
+  host 10.0.0.30
+  host 10.0.48.110
+  host 10.10.0.52
+  host 10.12.0.18
+  host 10.227.0.59
+  host 10.227.0.91
+  host 52.4.20.24
+  host 192.168.20.32
+  host 192.168.20.224
+  host 192.168.30.10
+  host 1.1.0.13
+  host 1.1.0.45
+  host 10.0.48.103
+  host 10.0.240.71
+  host 10.9.8.22
+  host 10.10.0.45
+  host 91.189.91.38
+  host 91.189.92.39
+  host 103.47.76.177
+  host 104.66.26.45
+  host 192.168.20.217
+  host 192.168.32.101
+  host 1.1.0.19
+  host 1.1.0.51
+  host 10.0.48.109
+  host 10.9.88.12
+  host 10.10.0.51
+  host 10.227.0.58
+  host 10.227.0.90
+  host 192.168.20.31
+  host 192.168.20.223
+  host 192.168.30.9
+  host 192.168.90.5
+  host 1.1.0.35
+  host 1.1.1.4
+  host 10.0.48.125
+  host 10.9.8.12
+  host 10.227.0.74
+  host 10.227.0.138
+  host 23.76.70.52
+  host 23.77.63.76
+  host 34.238.187.50
+  host 91.189.88.185
+  host 192.168.20.47
+  host 192.168.20.111
+  host 1.1.0.31
+  host 10.0.240.89
+  host 10.9.12.12
+  host 10.227.0.6
+  host 10.227.0.38
+  host 10.227.0.134
+  host 10.227.0.166
+  host 10.228.0.5
+  host 192.168.20.11
+  host 192.168.20.43
+  host 192.168.22.13
+  host 192.168.80.7
+  host 1.1.0.21
+  host 1.1.0.53
+  host 10.0.48.111
+  host 10.10.0.53
+  host 10.227.0.60
+  host 10.227.0.92
+  host 192.168.20.225
+  host 1.1.0.10
+  host 1.1.0.42
+  host 10.0.48.100
+  host 10.9.12.23
+  host 10.10.0.42
+  host 10.227.0.49
+  host 10.227.0.81
+  host 10.227.0.145
+  host 18.232.227.119
+  host 104.18.121.25
+  host 172.17.27.0
+  host 192.168.9.11
+  host 192.168.20.54
+  host 1.1.0.22
+  host 1.1.0.54
+  host 10.0.0.32
+  host 10.0.48.112
+  host 10.9.20.11
+  host 10.10.0.54
+  host 23.51.54.176
+  host 35.174.73.84
+  host 172.31.255.2
+  host 192.168.20.2
+  host 192.168.20.226
+  host 192.168.28.10
+  host 1.1.0.9
+  host 1.1.0.41
+  host 10.0.48.99
+  host 10.10.0.41
+  host 10.227.0.144
+  host 52.1.121.53
+  host 54.85.107.53
+  host 104.18.122.25
+  host 192.168.20.53
+  host 192.168.20.245
+  host 1.1.0.23
+  host 1.1.0.55
+  host 10.0.0.1
+  host 10.0.48.113
+  host 10.0.240.81
+  host 10.9.20.12
+  host 10.9.82.10
+  host 10.227.0.94
+  host 23.34.107.215
+  host 91.189.91.48
+  host 192.168.20.3
+  host 192.168.20.227
+  host 192.168.22.5
+  host 192.168.28.11
+  host 1.1.0.5
+  host 1.1.0.37
+  host 10.0.48.127
+  host 10.9.16.22
+  host 10.227.0.44
+  host 10.227.0.76
+  host 10.227.0.140
+  host 10.228.0.11
+  host 117.18.232.240
+  host 172.16.0.1
+  host 192.168.20.49
+  host 1.1.0.26
+  host 10.6.1.63
+  host 10.9.16.11
+  host 10.9.80.11
+  host 10.9.81.12
+  host 10.9.82.13
+  host 10.227.0.97
+  host 52.20.56.50
+  host 91.189.92.20
+  host 184.85.116.209
+  host 192.168.20.6
+  host 192.168.20.38
+  host 192.168.20.102
+  host 192.168.22.8
+  host 192.168.23.105
+  host 1.1.0.12
+  host 1.1.0.44
+  host 10.0.48.102
+  host 10.9.8.21
+  host 10.10.0.44
+  host 10.227.0.51
+  host 10.227.0.83
+  host 10.227.0.147
+  host 91.189.92.38
+  host 192.168.20.216
+  host 207.148.72.47
+! 
+access-list ACL_IN extended permit UDP object os3-*_[2] object os3-w2 eq 8472
+access-list ACL_IN extended permit UDP object 10.227.0.166 object os3-w* eq domain
+access-list ACL_IN extended permit TCP object 10.227.0.1* object os3-* eq 8443
+access-list ACL_IN extended permit TCP object os3-w* object os3-* eq 8443
+access-list ACL_IN extended permit TCP object os3-* object ASEAN_DMZ eq 5660
+access-list ACL_IN extended permit TCP object os3-* object 10.227.0.*_[2] eq 6443
+access-list ACL_IN extended permit UDP object os3-*_[2] object os3-w3 eq 8472
+access-list ACL_IN extended permit UDP object ASEAN_DMZ object os3-*_[2] eq 8472
+access-list ACL_IN extended permit TCP object os3-w2 object ASEAN_DMZ eq 8009
+access-list ACL_IN extended permit TCP object os3-w1 object ASEAN_DMZ eq 8009
+access-list ACL_IN extended permit TCP object 10.227.0.*_[3] object os3-* eq 8443
+access-list ACL_IN extended permit UDP object os3-w3 object os3-*_[2] eq 8472
+access-list ACL_IN extended permit ICMP object ASEAN_DMZ object os3-w*
+access-list ACL_IN extended permit TCP object os3-* object 10.227.0.* eq 8443
+access-list ACL_IN extended permit TCP object os3-w3 object ASEAN_DMZ eq 8009
+access-list ACL_IN extended permit TCP object os3-* object 10.227.0.8 eq 9090
+access-list ACL_IN extended permit TCP object os3-* object 10.227.0.145 eq 5000
+access-list ACL_IN extended permit UDP object ASEAN_DMZ object os3-w3 eq 8472
+access-list ACL_IN extended permit UDP object ASEAN_DMZ object os3-w2 eq 8472
+access-list ACL_IN extended permit TCP object os3-w* object ASEAN_DMZ eq 5660
+access-list ACL_IN extended permit TCP object os3-w* object 10.227.0.*_[3] eq 1936
+access-list ACL_IN extended permit TCP object os3-* object os3-w* eq 10250
+access-list ACL_IN extended permit TCP object 10.227.0.*_[2] object os3-* eq 8443
+access-list ACL_IN extended permit TCP object ASEAN_DMZ object os3-* eq 8443
+access-list ACL_IN extended permit UDP object os3-*_[2] object ASEAN_DMZ range 10161-10162
+access-list ACL_IN extended permit TCP object os3-* object 10.227.0.1* eq 1338
+access-list ACL_IN extended permit TCP object 10.227.0.* object os3-* eq 8443
+access-list ACL_IN extended deny ip any any
 !
 

@@ -1,14 +1,14 @@
 [
     {
         "id": "5f7524e5755f027db2f10ec1",
-        "name": "Customer-Invoice-Policies",
+        "name": "TestDrive-Invoice-Policies",
         "app_scope_id": "5f752276497d4f2624ca96d8",
         "description": null,
         "author": "Duc Le",
         "primary": true,
         "alternate_query_mode": true,
-        "enforced_version": 4,
-        "enforcement_enabled": true,
+        "enforced_version": 0,
+        "enforcement_enabled": false,
         "created_at": 1601512677,
         "latest_adm_version": 3,
         "version": "v3",
@@ -78,24 +78,6 @@
         },
         "absolute_policies": [],
         "default_policies": [
-            {
-                "consumer_filter_id": "5cc00b07497d4f0d0fc4f806",
-                "provider_filter_id": "5f765c0b497d4f0a80f9bfb4",
-                "consumer_filter_name": "Financial_Dept",
-                "provider_filter_name": "Frontend-Proxy",
-                "l4_params": [
-                    {
-                        "port": [
-                            80,
-                            80
-                        ],
-                        "proto": 6,
-                        "approved": true
-                    }
-                ],
-                "action": "ALLOW",
-                "priority": 90
-            },
             {
                 "consumer_filter_id": "5f752276497d4f2624ca96d8",
                 "provider_filter_id": "5ca1ceb0497d4f2586c4f846",
@@ -564,30 +546,6 @@
                 "parent_app_scope": {
                     "id": "5ca1ceaa497d4f3cc2c4f7f6",
                     "name": "anhdle:AUS"
-                }
-            },
-            {
-                "id": "5cc00b07497d4f0d0fc4f806",
-                "filter_type": "UserInventoryFilter",
-                "name": "Financial_Dept",
-                "query": {
-                    "type": "and",
-                    "filters": [
-                        {
-                            "field": "vrf_id",
-                            "type": "eq",
-                            "value": 676737
-                        },
-                        {
-                            "field": "user_ISE_ctsSecurityGroup",
-                            "type": "eq",
-                            "value": "Finance"
-                        }
-                    ]
-                },
-                "parent_app_scope": {
-                    "id": "5ca1a63f755f0217288fbfa0",
-                    "name": "anhdle"
                 }
             }
         ],
